@@ -1,0 +1,114 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+}
+
+const { title, description } = Astro.props;
+const pathname = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/',            label: 'Accueil' },
+  { href: '/menu',        label: 'Menu' },
+  { href: '/reservation', label: 'Réservation' },
+  { href: '/contact',     label: 'Contact' },
+];
+---
+
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={Astro.url.href} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <title>{title}</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  </head>
+  <body>
+
+    <!-- Navigation -->
+    <nav class="site-nav" aria-label="Navigation principale">
+      <div class="site-nav__inner">
+        <a href="/" class="site-nav__logo">La Table de la Dyle</a>
+
+        <button class="nav-toggle" aria-label="Menu" aria-expanded="false" id="nav-toggle">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <ul class="site-nav__links" id="nav-menu">
+          {navLinks.map(link => (
+            <li>
+              <a
+                href={link.href}
+                aria-current={pathname === link.href || (link.href !== '/' && pathname.startsWith(link.href)) ? 'page' : undefined}
+              >
+                {link.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </nav>
+
+    <!-- Page Content -->
+    <main>
+      <slot />
+    </main>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="site-footer__inner">
+
+        <div>
+          <p class="site-footer__heading">La Table de la Dyle</p>
+          <address>
+            27 rue Charles Sambon<br />
+            1300 Wavre, Belgique<br /><br />
+            <a href="tel:+32476820747">+32 476 82 07 47</a><br />
+            <a href="mailto:vancompernollenoe@gmail.com">vancompernollenoe@gmail.com</a>
+          </address>
+        </div>
+
+        <div>
+          <p class="site-footer__heading">Horaires</p>
+          <p>
+            Mar – Ven : 12h–14h30 / 18h–22h<br />
+            Samedi : 12h–15h / 18h–23h<br />
+            Dimanche : 12h–15h<br />
+            Lundi : Fermé
+          </p>
+        </div>
+
+        <div>
+          <p class="site-footer__heading">Navigation</p>
+          <ul>
+            {navLinks.map(link => (
+              <li><a href={link.href}>{link.label}</a></li>
+            ))}
+            <li><a href="/reservation">Réserver une table</a></li>
+          </ul>
+        </div>
+
+      </div>
+      <p class="site-footer__bottom">© 2026 La Table de la Dyle — Brasserie Belge · Wavre</p>
+    </footer>
+
+    <!-- Mobile nav toggle -->
+    <script>
+      const toggle = document.getElementById('nav-toggle');
+      const menu = document.getElementById('nav-menu');
+      toggle?.addEventListener('click', () => {
+        const isOpen = menu?.classList.toggle('is-open');
+        toggle.setAttribute('aria-expanded', String(isOpen));
+      });
+    </script>
+
+  </body>
+</html>

@@ -1,0 +1,175 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Réserver une Table — La Table de la Dyle, Wavre"
+  description="Réservez votre table à La Table de la Dyle, brasserie belge à Wavre. Réservation en ligne via Octotable. Terrasse disponible selon disponibilités."
+>
+
+  <section class="section resa-hero text-center">
+    <div class="container">
+      <p class="section__label">Bienvenue chez nous</p>
+      <h1>Réserver une table</h1>
+      <p class="section__intro">
+        Réservez votre table à La Table de la Dyle en quelques secondes
+        via notre système de réservation en ligne. Nous avons hâte de vous accueillir !
+      </p>
+      <a
+        href="https://booking.octotable.com/RESTAURANT_ID"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn--primary btn--large"
+      >
+        Réserver maintenant via Octotable
+      </a>
+    </div>
+  </section>
+
+  <section class="section section--grey">
+    <div class="container">
+      <div class="info-grid">
+
+        <div class="info-card">
+          <h3>Informations pratiques</h3>
+          <ul class="info-list">
+            <li>Les réservations sont acceptées jusqu'à 2h avant le service.</li>
+            <li>Pour les groupes de plus de 8 personnes, veuillez nous contacter directement par téléphone.</li>
+            <li>En cas d'annulation, merci de nous prévenir au moins 24h à l'avance.</li>
+            <li>Nous faisons de notre mieux pour honorer les demandes de terrasse selon la météo et les disponibilités.</li>
+          </ul>
+        </div>
+
+        <div class="info-card">
+          <h3>Nos horaires</h3>
+          <dl class="hours-list">
+            <div>
+              <dt>Mardi – Vendredi</dt>
+              <dd>12h00 – 14h30 &amp; 18h00 – 22h00</dd>
+            </div>
+            <div>
+              <dt>Samedi</dt>
+              <dd>12h00 – 15h00 &amp; 18h00 – 23h00</dd>
+            </div>
+            <div>
+              <dt>Dimanche</dt>
+              <dd>12h00 – 15h00</dd>
+            </div>
+            <div>
+              <dt>Lundi</dt>
+              <dd>Fermé</dd>
+            </div>
+          </dl>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section class="section text-center">
+    <div class="container">
+      <h2>Vous préférez nous appeler&nbsp;?</h2>
+      <p class="section__intro">
+        Notre équipe est disponible pendant les heures d'ouverture
+        pour répondre à toutes vos questions.
+      </p>
+      <div class="contact-links">
+        <a href="tel:+32476820747" class="btn btn--outline-dark">
+          +32 476 82 07 47
+        </a>
+        <a href="mailto:vancompernollenoe@gmail.com" class="btn btn--outline-dark">
+          vancompernollenoe@gmail.com
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .resa-hero {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-lg);
+  }
+
+  .resa-hero h1 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .btn--large {
+    padding: 1.1rem 3rem;
+    font-size: 0.95rem;
+    margin-top: var(--space-sm);
+  }
+
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-md);
+  }
+
+  .info-card {
+    background: var(--color-white);
+    padding: var(--space-md);
+    border-top: 2px solid var(--color-black);
+  }
+
+  .info-card h3 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .info-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .info-list li {
+    padding-left: 1.2em;
+    position: relative;
+    color: var(--color-grey-text);
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  .info-list li::before {
+    content: '–';
+    position: absolute;
+    left: 0;
+    color: var(--color-grey-text);
+  }
+
+  .hours-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-xs);
+  }
+
+  .hours-list div {
+    display: flex;
+    justify-content: space-between;
+    gap: var(--space-sm);
+    padding-bottom: var(--space-xs);
+    border-bottom: 1px solid var(--color-grey-mid);
+    font-size: 0.9rem;
+  }
+
+  .hours-list dt {
+    color: var(--color-black);
+    font-weight: 600;
+  }
+
+  .hours-list dd {
+    color: var(--color-grey-text);
+    text-align: right;
+  }
+
+  .contact-links {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-sm);
+  }
+</style>

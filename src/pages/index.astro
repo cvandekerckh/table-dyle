@@ -1,0 +1,388 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="La Table de la Dyle — Brasserie Belge · Wavre · Terrasse"
+  description="Bienvenue à La Table de la Dyle, brasserie belge à Wavre. Cuisine de produits frais, ambiance conviviale et magnifique terrasse. Réservez votre table en ligne."
+>
+
+  <!-- ========================================================
+       HERO
+       ======================================================== -->
+  <section class="hero" aria-label="Accueil">
+    <div class="hero__content">
+      <p class="hero__label">Brasserie Belge · Wavre</p>
+      <h1>La Table<br /><em>de la Dyle</em></h1>
+      <p class="hero__tagline">Brasserie belge · Produits frais · Terrasse</p>
+      <a href="/reservation" class="btn btn--outline">Réserver une table</a>
+    </div>
+    <div class="hero__scroll" aria-hidden="true">↓</div>
+  </section>
+
+  <!-- ========================================================
+       CONCEPT
+       ======================================================== -->
+  <section class="section section--grey">
+    <div class="container text-center">
+      <p class="section__label">Notre identité</p>
+      <h2 class="section__heading">Une brasserie belge authentique</h2>
+      <p class="section__intro">
+        À La Table de la Dyle, nous célébrons la tradition culinaire belge avec passion,
+        générosité et des produits soigneusement sélectionnés.
+      </p>
+
+      <div class="concept-grid">
+        <div class="concept-card">
+          <div class="concept-card__icon">✦</div>
+          <h3>Brasserie Belge</h3>
+          <p>
+            Une cuisine authentique ancrée dans la tradition belge, entre classiques revisités
+            et recettes du terroir wallon.
+          </p>
+        </div>
+
+        <div class="concept-card">
+          <div class="concept-card__icon">✦</div>
+          <h3>Produits Frais</h3>
+          <p>
+            Nous travaillons avec des producteurs locaux pour vous proposer une carte courte,
+            de saison et toujours généreuse.
+          </p>
+        </div>
+
+        <div class="concept-card concept-card--featured">
+          <div class="concept-card__icon">☀</div>
+          <h3>Notre Terrasse</h3>
+          <p>
+            Profitez de nos beaux jours sur notre terrasse ensoleillée — l'endroit idéal
+            pour un déjeuner ou un apéritif en plein air.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TERRASSE HIGHLIGHT
+       ======================================================== -->
+  <section class="section section--dark terrasse-section">
+    <div class="container">
+      <div class="terrasse-grid">
+        <img
+          src="/images/terrasse.jpg"
+          alt="La terrasse de La Table de la Dyle"
+          loading="lazy"
+          class="terrasse-photo"
+        />
+        <div class="terrasse-content">
+          <p class="section__label">Notre terrasse</p>
+          <h2>Un espace en plein air pour savourer l'instant</h2>
+          <p>
+            Dès les premiers rayons de soleil, notre terrasse vous accueille dans un cadre
+            chaleureux et verdoyant, au bord de la Dyle. Idéale pour les déjeuners en semaine,
+            les repas en famille ou les soirées entre amis, elle est le cœur battant de La Table
+            de la Dyle à la belle saison.
+          </p>
+          <p>
+            Réservez dès maintenant pour garantir votre place à l'extérieur — les beaux jours
+            se savourent à l'avance.
+          </p>
+          <a href="/reservation" class="btn btn--outline">Réserver une table en terrasse</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       PHOTOS
+       ======================================================== -->
+  <section class="section" aria-label="Galerie photos">
+    <div class="container text-center">
+      <p class="section__label">Découvrez</p>
+      <h2 class="section__heading">Notre établissement</h2>
+    </div>
+    <div class="photo-grid">
+      <img src="/images/interieur.PNG"      alt="La salle de La Table de la Dyle"   loading="lazy" class="photo-grid-img" />
+      <img src="/images/puis_lumineux.jpg"  alt="Ambiance chaleureuse"              loading="lazy" class="photo-grid-img" />
+      <img src="/images/exterieur.JPEG"     alt="Vue extérieure du restaurant"      loading="lazy" class="photo-grid-img" />
+    </div>
+  </section>
+
+  <!-- ========================================================
+       HORAIRES
+       ======================================================== -->
+  <section class="section section--grey" aria-label="Horaires d'ouverture">
+    <div class="container text-center">
+      <p class="section__label">Quand nous rendre visite</p>
+      <h2 class="section__heading">Nos Horaires</h2>
+
+      <div class="hours-table-wrap">
+        <table class="hours-table" aria-label="Horaires d'ouverture">
+          <thead>
+            <tr>
+              <th scope="col">Jour</th>
+              <th scope="col">Midi</th>
+              <th scope="col">Soir</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Mardi – Vendredi</td>
+              <td>12h00 – 14h30</td>
+              <td>18h00 – 22h00</td>
+            </tr>
+            <tr>
+              <td>Samedi</td>
+              <td>12h00 – 15h00</td>
+              <td>18h00 – 23h00</td>
+            </tr>
+            <tr>
+              <td>Dimanche</td>
+              <td>12h00 – 15h00</td>
+              <td>—</td>
+            </tr>
+            <tr class="closed">
+              <td>Lundi</td>
+              <td colspan="2">Fermé</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       CTA BANNER
+       ======================================================== -->
+  <section class="section section--dark text-center cta-section">
+    <div class="container">
+      <h2>Prêt à nous rendre visite&nbsp;?</h2>
+      <p class="section__intro">
+        Réservez votre table en quelques clics, directement en ligne.
+        Nous avons hâte de vous accueillir.
+      </p>
+      <a href="/reservation" class="btn btn--outline">Réserver une table</a>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  /* ---- Hero ---- */
+  .hero {
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-black) url('/images/hero.PNG') center/cover no-repeat;
+    color: var(--color-white);
+    text-align: center;
+    position: relative;
+    padding: var(--space-md);
+  }
+
+  .hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  .hero__content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+    max-width: 700px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .hero__label {
+    font-size: 0.8rem;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    opacity: 0.5;
+    margin-bottom: var(--space-xs);
+  }
+
+  .hero h1 {
+    color: var(--color-white);
+  }
+
+  .hero h1 em {
+    font-style: italic;
+    font-weight: 400;
+  }
+
+  .hero__tagline {
+    font-size: 1rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    opacity: 0.65;
+    margin: var(--space-xs) 0 var(--space-md);
+    max-width: 100%;
+  }
+
+  .hero__scroll {
+    position: absolute;
+    bottom: var(--space-md);
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 1.5rem;
+    opacity: 0.3;
+    animation: bounce 2s ease-in-out infinite;
+  }
+
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50%       { transform: translateX(-50%) translateY(6px); }
+  }
+
+  /* ---- Concept ---- */
+  .concept-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+    text-align: left;
+  }
+
+  .concept-card {
+    background: var(--color-white);
+    padding: var(--space-md);
+    border-top: 2px solid var(--color-grey-mid);
+  }
+
+  .concept-card--featured {
+    border-top-color: var(--color-black);
+  }
+
+  .concept-card__icon {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-sm);
+    opacity: 0.4;
+  }
+
+  .concept-card h3 {
+    margin-bottom: var(--space-xs);
+  }
+
+  .concept-card p {
+    color: var(--color-grey-text);
+    font-size: 0.95rem;
+    max-width: 100%;
+  }
+
+  /* ---- Terrasse ---- */
+  .terrasse-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-lg);
+    align-items: center;
+  }
+
+  @media (max-width: 768px) {
+    .terrasse-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .terrasse-photo {
+    width: 100%;
+    min-height: 400px;
+    object-fit: cover;
+    display: block;
+  }
+
+  .terrasse-content {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .terrasse-content h2 {
+    color: var(--color-white);
+  }
+
+  .terrasse-content p {
+    color: rgba(255, 255, 255, 0.75);
+    max-width: 100%;
+  }
+
+  .terrasse-content .btn {
+    margin-top: var(--space-sm);
+    align-self: flex-start;
+  }
+
+  /* ---- Photos grid ---- */
+  .photo-grid-img {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    object-fit: cover;
+    display: block;
+  }
+
+  .photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 4px;
+    margin-top: var(--space-md);
+  }
+
+  @media (max-width: 640px) {
+    .photo-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ---- Hours ---- */
+  .hours-table-wrap {
+    overflow-x: auto;
+    margin-top: var(--space-md);
+  }
+
+  .hours-table {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+  }
+
+  .hours-table th {
+    font-family: var(--font-heading);
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    padding: var(--space-sm) var(--space-md);
+    border-bottom: 2px solid var(--color-grey-mid);
+    color: var(--color-grey-text);
+  }
+
+  .hours-table td {
+    padding: 0.85rem var(--space-md);
+    border-bottom: 1px solid var(--color-grey-mid);
+  }
+
+  .hours-table tbody tr:nth-child(even) {
+    background: var(--color-white);
+  }
+
+  .hours-table .closed td {
+    color: var(--color-grey-text);
+    font-style: italic;
+  }
+
+  /* ---- CTA ---- */
+  .cta-section {
+    padding-top: var(--space-xl);
+    padding-bottom: var(--space-xl);
+  }
+
+  .cta-section h2 {
+    color: var(--color-white);
+    margin-bottom: var(--space-sm);
+  }
+</style>

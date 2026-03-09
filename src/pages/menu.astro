@@ -1,0 +1,100 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout
+  title="Notre Menu — La Table de la Dyle, Brasserie Belge Wavre"
+  description="Consultez la carte de La Table de la Dyle : cuisine belge de saison, produits frais et locaux. Menu disponible en PDF."
+>
+
+  <section class="section menu-hero">
+    <div class="container text-center">
+      <p class="section__label">À la carte</p>
+      <h1>Notre Menu</h1>
+      <p class="section__intro">
+        Découvrez notre carte, composée de produits frais et de saison.
+        Notre menu évolue régulièrement pour refléter le meilleur du moment
+        et les saveurs du terroir belge.
+      </p>
+      <a href="/menu.pdf" download class="btn btn--primary">
+        Télécharger le menu (PDF)
+      </a>
+    </div>
+  </section>
+
+  <section class="section section--grey">
+    <div class="container">
+      <p class="viewer-label">Consulter le menu directement :</p>
+      <div class="pdf-viewer-wrap">
+        <iframe
+          src="/menu.pdf"
+          width="100%"
+          height="800"
+          title="Menu de La Table de la Dyle"
+          aria-label="Menu PDF de La Table de la Dyle"
+        >
+          <p>
+            Votre navigateur ne supporte pas l'affichage PDF.
+            <a href="/menu.pdf">Téléchargez le menu ici.</a>
+          </p>
+        </iframe>
+      </div>
+    </div>
+  </section>
+
+  <section class="section section--dark text-center">
+    <div class="container">
+      <h2>Une question sur notre carte&nbsp;?</h2>
+      <p class="section__intro">
+        N'hésitez pas à nous contacter ou à réserver pour en savoir plus
+        sur nos suggestions du moment.
+      </p>
+      <div class="menu-cta-group">
+        <a href="/reservation" class="btn btn--outline">Réserver une table</a>
+        <a href="/contact" class="btn btn--outline">Nous contacter</a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<style>
+  .menu-hero {
+    padding-top: var(--space-xl);
+  }
+
+  .menu-hero h1 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .menu-hero .btn {
+    margin-top: var(--space-sm);
+  }
+
+  .viewer-label {
+    font-size: 0.85rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--color-grey-text);
+    margin-bottom: var(--space-sm);
+    max-width: 100%;
+  }
+
+  .pdf-viewer-wrap {
+    border: 1px solid var(--color-grey-mid);
+    background: var(--color-white);
+  }
+
+  .pdf-viewer-wrap iframe {
+    display: block;
+    border: none;
+  }
+
+  .menu-cta-group {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: var(--space-sm);
+  }
+</style>

@@ -1,0 +1,334 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap');
+
+/* ============================================================
+   Design Tokens
+   ============================================================ */
+:root {
+  --color-white:      #FFFFFF;
+  --color-grey-light: #F5F5F5;
+  --color-grey-mid:   #E8E8E8;
+  --color-grey-text:  #6B6B6B;
+  --color-black:      #1A1A1A;
+
+  --font-heading: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body:    system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+
+  --space-xs:  0.5rem;
+  --space-sm:  1rem;
+  --space-md:  2rem;
+  --space-lg:  4rem;
+  --space-xl:  8rem;
+
+  --max-width: 1200px;
+}
+
+/* ============================================================
+   Reset
+   ============================================================ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-black);
+  background: var(--color-white);
+  line-height: 1.65;
+  font-size: 1rem;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* ============================================================
+   Typography
+   ============================================================ */
+h1, h2, h3, h4 {
+  font-family: var(--font-heading);
+  line-height: 1.2;
+}
+
+h1 { font-size: clamp(2.2rem, 6vw, 4.5rem); font-weight: 600; }
+h2 { font-size: clamp(1.6rem, 4vw, 2.8rem); font-weight: 400; }
+h3 { font-size: clamp(1.1rem, 2.5vw, 1.5rem); font-weight: 600; }
+
+p { max-width: 65ch; }
+
+/* ============================================================
+   Layout Utilities
+   ============================================================ */
+.container {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+}
+
+.section {
+  padding: var(--space-lg) var(--space-md);
+}
+
+.section--grey {
+  background: var(--color-grey-light);
+}
+
+.section--dark {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+.text-center { text-align: center; }
+
+.section__label {
+  font-size: 0.8rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.6;
+  margin-bottom: var(--space-xs);
+}
+
+.section__heading {
+  margin-bottom: var(--space-sm);
+}
+
+.section__intro {
+  color: var(--color-grey-text);
+  margin-bottom: var(--space-lg);
+  max-width: 55ch;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section--dark .section__intro {
+  color: rgba(255, 255, 255, 0.7);
+}
+
+/* ============================================================
+   Buttons
+   ============================================================ */
+.btn {
+  display: inline-block;
+  padding: 0.85rem 2.2rem;
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  border: 1px solid currentColor;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s, border-color 0.25s;
+  white-space: nowrap;
+}
+
+.btn--primary {
+  background: var(--color-black);
+  color: var(--color-white);
+  border-color: var(--color-black);
+}
+
+.btn--primary:hover {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.btn--outline {
+  background: transparent;
+  color: var(--color-white);
+  border-color: var(--color-white);
+}
+
+.btn--outline:hover {
+  background: var(--color-white);
+  color: var(--color-black);
+}
+
+.btn--outline-dark {
+  background: transparent;
+  color: var(--color-black);
+  border-color: var(--color-black);
+}
+
+.btn--outline-dark:hover {
+  background: var(--color-black);
+  color: var(--color-white);
+}
+
+/* ============================================================
+   Photo Placeholder
+   ============================================================ */
+.photo-placeholder {
+  background: var(--color-grey-mid);
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.75rem;
+  color: var(--color-grey-text);
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+}
+
+.photo-placeholder--tall {
+  aspect-ratio: 3 / 4;
+}
+
+.photo-placeholder--dark {
+  background: #333;
+}
+
+/* ============================================================
+   Navigation
+   ============================================================ */
+.site-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-grey-mid);
+}
+
+.site-nav__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--space-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 68px;
+}
+
+.site-nav__logo {
+  font-family: var(--font-heading);
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  flex-shrink: 0;
+}
+
+.site-nav__links {
+  display: flex;
+  gap: var(--space-md);
+  list-style: none;
+}
+
+.site-nav__links a {
+  font-size: 0.8rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding-bottom: 3px;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.site-nav__links a:hover,
+.site-nav__links a[aria-current="page"] {
+  border-bottom-color: var(--color-black);
+}
+
+.nav-toggle {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.nav-toggle span {
+  display: block;
+  width: 24px;
+  height: 1.5px;
+  background: var(--color-black);
+  transition: transform 0.2s;
+}
+
+@media (max-width: 640px) {
+  .nav-toggle {
+    display: flex;
+  }
+
+  .site-nav__links {
+    display: none;
+    position: absolute;
+    top: 68px;
+    left: 0;
+    right: 0;
+    background: var(--color-white);
+    border-bottom: 1px solid var(--color-grey-mid);
+    flex-direction: column;
+    padding: var(--space-sm) var(--space-md);
+    gap: var(--space-sm);
+  }
+
+  .site-nav__links.is-open {
+    display: flex;
+  }
+}
+
+/* ============================================================
+   Footer
+   ============================================================ */
+.site-footer {
+  background: var(--color-black);
+  color: var(--color-white);
+  padding: var(--space-lg) var(--space-md);
+}
+
+.site-footer__inner {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: var(--space-lg);
+}
+
+.site-footer__heading {
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: var(--space-sm);
+  opacity: 0.5;
+}
+
+.site-footer address,
+.site-footer p,
+.site-footer ul {
+  font-style: normal;
+  font-size: 0.9rem;
+  line-height: 1.9;
+  opacity: 0.8;
+}
+
+.site-footer ul {
+  list-style: none;
+}
+
+.site-footer ul a:hover {
+  opacity: 1;
+  text-decoration: underline;
+}
+
+.site-footer__bottom {
+  max-width: var(--max-width);
+  margin: var(--space-md) auto 0;
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  text-align: center;
+  font-size: 0.8rem;
+  opacity: 0.4;
+}
