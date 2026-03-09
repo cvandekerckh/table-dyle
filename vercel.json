@@ -1,0 +1,5 @@
+{
+  "buildCommand": "bash scripts/download-images.sh && npm run build",
+  "outputDirectory": "dist",
+  "framework": null
+}

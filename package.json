@@ -3,6 +3,7 @@
   "type": "module",
   "version": "0.0.1",
   "scripts": {
+    "download-images": "bash scripts/download-images.sh",
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
