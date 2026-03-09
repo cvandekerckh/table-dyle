@@ -54,5 +54,5 @@ Chaque push sur `main` déclenche un build automatique.
 
 - [ ] Remplacer `RESTAURANT_ID` dans `src/pages/reservation.astro` par l'ID Octotable réel
 - [ ] Remplacer `public/menu.pdf` par le vrai menu
-- [ ] Configurer le domaine `.be` sur Vercel
-- [ ] Mettre à jour `site` dans `astro.config.mjs` avec le domaine final
+- [x] Configurer le domaine `.be` sur Vercel → `tabledeladyle.be`
+- [x] Mettre à jour `site` dans `astro.config.mjs` avec le domaine final
