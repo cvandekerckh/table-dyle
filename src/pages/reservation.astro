@@ -20,24 +20,13 @@ import Layout from '../layouts/Layout.astro';
 
   <section class="section resa-widget">
     <div class="container">
-      <div class="resa-split">
-        <div class="resa-split__image">
-          <img src="/images/dinner.jpg" alt="Table dressée à La Table de la Dyle" loading="eager" />
-        </div>
-        <div class="coming-soon">
-          <div class="ornament">✦</div>
-          <h2>Réservation en ligne bientôt disponible</h2>
-          <p>
-            Notre système de réservation en ligne est en cours de mise en place.
-            En attendant, contactez-nous directement par téléphone ou par e-mail —
-            nous serons ravis de vous trouver une table&nbsp;!
-          </p>
-          <div class="coming-soon__links">
-            <a href="tel:+32476820747" class="btn btn--primary">+32 476 82 07 47</a>
-            <a href="mailto:latabledeladyle@gmail.com" class="btn btn--outline-dark">latabledeladyle@gmail.com</a>
-          </div>
-        </div>
-      </div>
+      <iframe
+        src="https://tableagent.com/iframe/la-table-de-la-dyle/"
+        width="100%"
+        height="600"
+        frameborder="0"
+        title="Réserver une table — La Table de la Dyle"
+      ></iframe>
     </div>
   </section>
 
@@ -127,102 +116,9 @@ import Layout from '../layouts/Layout.astro';
     padding-top: 0;
   }
 
-  .resa-split {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    border: 2px solid var(--color-black);
-    overflow: hidden;
-    min-height: 420px;
-    max-width: 100%;
-  }
-
-  @media (max-width: 768px) {
-    .resa-split {
-      grid-template-columns: 1fr;
-      min-height: auto;
-    }
-
-    .resa-split__image {
-      min-height: 220px;
-    }
-  }
-
-  .resa-split__image img {
-    width: 100%;
-    height: 100%;
-    min-height: 420px;
-    object-fit: cover;
+  .resa-widget iframe {
     display: block;
-  }
-
-  @media (max-width: 768px) {
-    .resa-split__image img {
-      min-height: 220px;
-    }
-  }
-
-  .coming-soon {
-    text-align: center;
-    padding: var(--space-lg) var(--space-sm);
-    background: var(--color-white);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    min-width: 0;
-    overflow: hidden;
-  }
-
-
-  .ornament {
-    display: flex;
-    align-items: center;
-    gap: var(--space-sm);
-    margin: 0 auto var(--space-md);
-    width: 100%;
-    max-width: 180px;
-    font-family: var(--font-heading);
-    color: var(--color-grey-text);
-    font-size: 0.8rem;
-  }
-
-  .ornament::before,
-  .ornament::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--color-grey-mid);
-  }
-
-  .coming-soon h2 {
-    margin-bottom: var(--space-sm);
-    word-break: break-word;
-    overflow-wrap: break-word;
-  }
-
-  .coming-soon p {
-    color: var(--color-grey-text);
-    max-width: 100%;
-    margin: 0 auto var(--space-md);
-    word-break: break-word;
-    overflow-wrap: break-word;
-  }
-
-  .coming-soon__links {
-    display: flex;
-    flex-direction: column;
-    gap: var(--space-sm);
-    justify-content: center;
-    align-items: stretch;
-    width: 100%;
-    max-width: 320px;
-  }
-
-  .coming-soon__links .btn {
-    white-space: normal;
-    word-break: break-word;
-    overflow-wrap: break-word;
-    text-align: center;
+    border: none;
   }
 
   .info-grid {
