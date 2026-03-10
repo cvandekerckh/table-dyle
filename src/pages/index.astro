@@ -127,6 +127,7 @@ import Layout from '../layouts/Layout.astro';
       <img src="/images/puis_lumineux.jpg"  alt="Ambiance chaleureuse"              loading="lazy" class="photo-grid-img" />
       <img src="/images/exterieur.JPEG"     alt="Vue extérieure du restaurant"      loading="lazy" class="photo-grid-img" />
     </div>
+    <p class="photos-caption">D'autres photos à venir — notre établissement vient tout juste d'ouvrir ses portes.</p>
   </section>
 
   <!-- ========================================================
@@ -455,6 +456,16 @@ import Layout from '../layouts/Layout.astro';
     .photo-grid {
       grid-template-columns: repeat(2, 1fr);
     }
+  }
+
+  .photos-caption {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--color-grey-text);
+    margin-top: var(--space-md);
+    padding: 0 var(--space-md);
   }
 
   /* ---- Hours ---- */
