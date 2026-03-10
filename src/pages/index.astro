@@ -122,29 +122,37 @@ import Layout from '../layouts/Layout.astro';
           <thead>
             <tr>
               <th scope="col">Jour</th>
-              <th scope="col">Midi</th>
-              <th scope="col">Soir</th>
+              <th scope="col">Horaires</th>
             </tr>
           </thead>
           <tbody>
+            <tr class="closed">
+              <td>Lundi</td>
+              <td>Fermé</td>
+            </tr>
             <tr>
-              <td>Mardi – Vendredi</td>
-              <td>12h00 – 14h30</td>
+              <td>Mardi</td>
               <td>18h00 – 22h00</td>
             </tr>
             <tr>
+              <td>Mercredi</td>
+              <td>11h00 – 22h00</td>
+            </tr>
+            <tr>
+              <td>Jeudi</td>
+              <td>11h00 – 22h00</td>
+            </tr>
+            <tr>
+              <td>Vendredi</td>
+              <td>11h00 – 22h00</td>
+            </tr>
+            <tr>
               <td>Samedi</td>
-              <td>12h00 – 15h00</td>
-              <td>18h00 – 23h00</td>
+              <td>11h00 – 22h00</td>
             </tr>
             <tr>
               <td>Dimanche</td>
-              <td>12h00 – 15h00</td>
-              <td>—</td>
-            </tr>
-            <tr class="closed">
-              <td>Lundi</td>
-              <td colspan="2">Fermé</td>
+              <td>11h00 – 22h00</td>
             </tr>
           </tbody>
         </table>
