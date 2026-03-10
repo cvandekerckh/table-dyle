@@ -7,11 +7,11 @@ import Layout from '../layouts/Layout.astro';
   description="Consultez la carte de La Table de la Dyle : cuisine belge de saison, produits frais et locaux."
 >
 
-  <section class="section menu-hero">
-    <div class="container text-center">
+  <section class="menu-hero">
+    <div class="menu-hero__content">
       <p class="section__label">À la carte</p>
       <h1>Notre Menu</h1>
-      <p class="section__intro">
+      <p class="menu-hero__intro">
         Découvrez notre carte, composée de produits frais et de saison.
         Notre menu évolue régulièrement pour refléter le meilleur du moment
         et les saveurs du terroir belge.
@@ -50,11 +50,45 @@ import Layout from '../layouts/Layout.astro';
 
 <style>
   .menu-hero {
-    padding-top: var(--space-xl);
+    min-height: 55vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-black) url('/images/ambiance.jpg') center/cover no-repeat;
+    position: relative;
+    text-align: center;
+    padding: var(--space-md);
   }
 
-  .menu-hero h1 {
-    margin-bottom: var(--space-sm);
+  .menu-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.58);
+  }
+
+  .menu-hero__content {
+    position: relative;
+    z-index: 1;
+    color: var(--color-white);
+    max-width: 700px;
+  }
+
+  .menu-hero__content .section__label {
+    opacity: 0.6;
+  }
+
+  .menu-hero__content h1 {
+    color: var(--color-white);
+    margin: var(--space-xs) 0 var(--space-sm);
+  }
+
+  .menu-hero__intro {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 560px;
+    margin: 0 auto;
   }
 
   .menu-carte {
@@ -88,8 +122,9 @@ import Layout from '../layouts/Layout.astro';
 
   .menu-carte__label {
     font-family: var(--font-heading);
-    font-size: 1rem;
-    color: var(--color-grey-text);
+    font-size: 1.5rem;
+    color: var(--color-black);
+    text-align: center;
   }
 
   .carte-img {
