@@ -20,22 +20,19 @@ import Layout from '../layouts/Layout.astro';
 
   <section class="section resa-widget">
     <div class="container">
-      <iframe
-        src="https://tableagent.com/iframe/YOUR_SLUG/"
-        width="100%"
-        height="620"
-        frameborder="0"
-        title="Réserver une table — La Table de la Dyle"
-        loading="lazy"
-      ></iframe>
-      <noscript>
+      <div class="coming-soon">
+        <p class="coming-soon__icon">📅</p>
+        <h2>Réservation en ligne bientôt disponible</h2>
         <p>
-          Pour réserver, visitez directement
-          <a href="https://tableagent.com/iframe/YOUR_SLUG/" target="_blank" rel="noopener noreferrer">
-            notre page de réservation
-          </a>.
+          Notre système de réservation en ligne est en cours de mise en place.
+          En attendant, contactez-nous directement par téléphone ou par e-mail —
+          nous serons ravis de vous trouver une table&nbsp;!
         </p>
-      </noscript>
+        <div class="coming-soon__links">
+          <a href="tel:+32476820747" class="btn btn--primary">+32 476 82 07 47</a>
+          <a href="mailto:vancompernollenoe@gmail.com" class="btn btn--outline-dark">vancompernollenoe@gmail.com</a>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -125,11 +122,33 @@ import Layout from '../layouts/Layout.astro';
     padding-top: 0;
   }
 
-  .resa-widget iframe {
-    display: block;
+  .coming-soon {
+    text-align: center;
+    padding: var(--space-xl) var(--space-md);
+    background: var(--color-white);
     border: 1px solid var(--color-grey-mid);
-    width: 100%;
-    min-height: 620px;
+  }
+
+  .coming-soon__icon {
+    font-size: 3rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .coming-soon h2 {
+    margin-bottom: var(--space-sm);
+  }
+
+  .coming-soon p {
+    color: var(--color-grey-text);
+    max-width: 520px;
+    margin: 0 auto var(--space-md);
+  }
+
+  .coming-soon__links {
+    display: flex;
+    gap: var(--space-sm);
+    justify-content: center;
+    flex-wrap: wrap;
   }
 
   .info-grid {
