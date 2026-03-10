@@ -284,6 +284,10 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /* ---- Terrasse ---- */
+  .terrasse-section {
+    overflow: hidden;
+  }
+
   .terrasse-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -291,17 +295,22 @@ import Layout from '../layouts/Layout.astro';
     align-items: center;
   }
 
-  @media (max-width: 768px) {
-    .terrasse-grid {
-      grid-template-columns: 1fr;
-    }
-  }
-
   .terrasse-photo {
     width: 100%;
     min-height: 400px;
     object-fit: cover;
     display: block;
+  }
+
+  @media (max-width: 768px) {
+    .terrasse-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .terrasse-photo {
+      min-height: 260px;
+      max-width: 100%;
+    }
   }
 
   .terrasse-content {
