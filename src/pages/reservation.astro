@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Réserver une Table — La Table de la Dyle, Wavre"
-  description="Réservez votre table à La Table de la Dyle, brasserie belge à Wavre. Réservation en ligne via Octotable. Terrasse disponible selon disponibilités."
+  description="Réservez votre table à La Table de la Dyle, brasserie belge à Wavre. Réservation en ligne rapide et gratuite. Terrasse disponible selon disponibilités."
 >
 
   <section class="section resa-hero text-center">
@@ -15,14 +15,27 @@ import Layout from '../layouts/Layout.astro';
         Réservez votre table à La Table de la Dyle en quelques secondes
         via notre système de réservation en ligne. Nous avons hâte de vous accueillir !
       </p>
-      <a
-        href="https://booking.octotable.com/RESTAURANT_ID"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn btn--primary btn--large"
-      >
-        Réserver maintenant via Octotable
-      </a>
+    </div>
+  </section>
+
+  <section class="section resa-widget">
+    <div class="container">
+      <iframe
+        src="https://tableagent.com/iframe/YOUR_SLUG/"
+        width="100%"
+        height="620"
+        frameborder="0"
+        title="Réserver une table — La Table de la Dyle"
+        loading="lazy"
+      ></iframe>
+      <noscript>
+        <p>
+          Pour réserver, visitez directement
+          <a href="https://tableagent.com/iframe/YOUR_SLUG/" target="_blank" rel="noopener noreferrer">
+            notre page de réservation
+          </a>.
+        </p>
+      </noscript>
     </div>
   </section>
 
@@ -89,17 +102,22 @@ import Layout from '../layouts/Layout.astro';
 <style>
   .resa-hero {
     padding-top: var(--space-xl);
-    padding-bottom: var(--space-lg);
+    padding-bottom: var(--space-md);
   }
 
   .resa-hero h1 {
     margin-bottom: var(--space-sm);
   }
 
-  .btn--large {
-    padding: 1.1rem 3rem;
-    font-size: 0.95rem;
-    margin-top: var(--space-sm);
+  .resa-widget {
+    padding-top: 0;
+  }
+
+  .resa-widget iframe {
+    display: block;
+    border: 1px solid var(--color-grey-mid);
+    width: 100%;
+    min-height: 620px;
   }
 
   .info-grid {

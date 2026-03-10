@@ -14,7 +14,7 @@ The restaurant concept to communicate: - **brasserie belge** -
 **produits frais** - friendly atmosphere - presence of a **terrasse
 (patio)** that should be clearly highlighted.
 
-Reservations are handled externally via **Octotable**.
+Reservations are handled via **Table Agent** (free, iframe embed — tableagent.com).
 
 The site must remain **simple, static, fast, and inexpensive to host**.
 
@@ -61,15 +61,22 @@ call-to-action to view/download the menu
 
 ### Réservation
 
-This page must integrate the **Octotable reservation system**.
+This page must integrate the **Table Agent reservation system** (free iframe embed).
 
-Include: - reservation button or widget - clear call-to-action such as
-**"Réserver une table"**
+Include: - Table Agent iframe widget - clear call-to-action **"Réserver une table"**
+- practical info cards (hours, phone, email fallback)
 
 Example:
 
-`<a href="https://booking.octotable.com/RESTAURANT_ID">`{=html} Réserver
-une table `</a>`{=html}
+```html
+<iframe
+  src="https://tableagent.com/iframe/YOUR_SLUG/"
+  width="100%"
+  height="600"
+  frameborder="0"
+  title="Réserver une table — La Table de la Dyle"
+></iframe>
+```
 
 ------------------------------------------------------------------------
 

@@ -14,7 +14,7 @@ Site web statique pour **La Table de la Dyle**, brasserie belge à Wavre.
 |---|---|
 | `/` | Accueil — hero, concept, terrasse, photos, horaires |
 | `/menu` | Menu — PDF téléchargeable + visionneuse |
-| `/reservation` | Réservation — lien Octotable |
+| `/reservation` | Réservation — widget Table Agent |
 | `/contact` | Contact — adresse, plan, téléphone |
 
 ## Setup local
@@ -59,7 +59,7 @@ Chaque push sur `main` déclenche un build automatique.
 
 ## À compléter
 
-- [ ] Remplacer `RESTAURANT_ID` dans `src/pages/reservation.astro` par l'ID Octotable réel
+- [ ] Remplacer `YOUR_SLUG` dans `src/pages/reservation.astro` par le slug Table Agent réel
 - [ ] Remplacer `public/menu.pdf` par le vrai menu
 - [x] Configurer le domaine `.be` sur Vercel → `tabledeladyle.be`
 - [x] Mettre à jour `site` dans `astro.config.mjs` avec le domaine final
