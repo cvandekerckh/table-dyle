@@ -7,11 +7,11 @@ import Layout from '../layouts/Layout.astro';
   description="Réservez votre table à La Table de la Dyle, brasserie belge à Wavre. Réservation en ligne rapide et gratuite. Terrasse disponible selon disponibilités."
 >
 
-  <section class="section resa-hero text-center">
-    <div class="container">
+  <section class="resa-hero">
+    <div class="resa-hero__content">
       <p class="section__label">Bienvenue chez nous</p>
       <h1>Réserver une table</h1>
-      <p class="section__intro">
+      <p class="resa-hero__intro">
         Réservez votre table à La Table de la Dyle en quelques secondes
         via notre système de réservation en ligne. Nous avons hâte de vous accueillir !
       </p>
@@ -103,17 +103,58 @@ import Layout from '../layouts/Layout.astro';
 </Layout>
 
 <style>
+  /* ---- Hero ---- */
   .resa-hero {
-    padding-top: var(--space-xl);
-    padding-bottom: var(--space-md);
+    position: relative;
+    min-height: 420px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--color-black) url('/images/puis_lumineux.jpg') center/cover no-repeat;
+    text-align: center;
+    overflow: hidden;
   }
 
-  .resa-hero h1 {
+  .resa-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.55);
+  }
+
+  .resa-hero__content {
+    position: relative;
+    z-index: 1;
+    padding: var(--space-xl) var(--space-md);
+    max-width: 640px;
+    width: 100%;
+  }
+
+  .resa-hero__content .section__label {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  .resa-hero__content h1 {
+    color: var(--color-white);
     margin-bottom: var(--space-sm);
   }
 
+  .resa-hero__intro {
+    color: rgba(255, 255, 255, 0.75);
+    font-size: 1.05rem;
+    line-height: 1.7;
+    max-width: 520px;
+    margin: 0 auto;
+  }
+
+  @media (max-width: 768px) {
+    .resa-hero {
+      min-height: 280px;
+    }
+  }
+
   .resa-widget {
-    padding-top: 0;
+    padding-top: var(--space-md);
   }
 
   .resa-widget iframe {
