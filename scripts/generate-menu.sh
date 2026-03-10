@@ -7,7 +7,7 @@ set -e
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT="$SCRIPT_DIR/.."
 HTML="$ROOT/carte/menu.html"
-OUT="$ROOT/public/menu.png"
+OUT="$ROOT/public/images/menu.png"
 
 # Locate Chrome
 CHROME=""
@@ -40,4 +40,4 @@ echo "Generating menu PNG from carte/menu.html…"
   --hide-scrollbars \
   "file://$HTML" 2>/dev/null
 
-echo "✓ Menu PNG saved to public/menu.png"
+echo "✓ Menu PNG saved to public/images/menu.png"
