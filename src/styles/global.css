@@ -295,12 +295,13 @@ p { max-width: 65ch; }
 }
 
 .site-footer__logo {
-  height: 60px;
-  width: auto;
-  max-width: 180px;
-  opacity: 0.75;
-  object-fit: contain;
+  height: 120px;
+  width: 120px;
+  object-fit: cover;
   display: inline-block;
+  border-radius: 50%;
+  -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, black 65%, transparent 88%);
+  mask-image: radial-gradient(ellipse 70% 70% at center, black 65%, transparent 88%);
 }
 
 .site-footer__inner {

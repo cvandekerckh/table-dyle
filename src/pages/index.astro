@@ -280,12 +280,14 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .concept-logo {
-    height: 80px;
-    width: auto;
-    max-width: 220px;
-    margin: 0 auto var(--space-xs);
+    height: 200px;
+    width: 200px;
+    margin: 0 auto var(--space-sm);
     display: block;
-    object-fit: contain;
+    object-fit: cover;
+    border-radius: 50%;
+    -webkit-mask-image: radial-gradient(ellipse 70% 70% at center, black 65%, transparent 88%);
+    mask-image: radial-gradient(ellipse 70% 70% at center, black 65%, transparent 88%);
   }
 
   .ornament {
