@@ -13,7 +13,7 @@ Site web statique pour **La Table de la Dyle**, brasserie belge à Wavre.
 | Route | Description |
 |---|---|
 | `/` | Accueil — hero, concept, terrasse, photos, horaires |
-| `/menu` | Menu — PDF téléchargeable + visionneuse |
+| `/menu` | Menu — image PNG générée depuis `carte/menu.html` |
 | `/reservation` | Réservation — widget Table Agent |
 | `/contact` | Contact — adresse, plan, téléphone |
 
@@ -21,36 +21,34 @@ Site web statique pour **La Table de la Dyle**, brasserie belge à Wavre.
 
 ```bash
 npm install
-npm run download-images   # télécharge les photos depuis Google Drive
-npm run dev               # http://localhost:4321
+npm run dev   # http://localhost:4321
 ```
 
 ## Images
 
-Les images sont **exclues du dépôt git** et stockées sur Google Drive.
-Le script `scripts/download-images.sh` les télécharge automatiquement lors du build.
+Les images sont dans `public/images/` et versionnées dans git.
 
-- **Local :** `npm run download-images`
-- **Vercel :** exécuté automatiquement avant le build (via `vercel.json`)
+### Mettre à jour une photo (sans terminal)
 
-### Mettre à jour une photo (sans toucher au code)
+1. Va sur **github.com** → dépôt `table-dyle` → dossier `public/images/`
+2. Clique sur **"Add file" → "Upload files"**
+3. Glisse la nouvelle photo — **utilise exactement le même nom de fichier**
+4. Clique **"Commit changes"** → le site se met à jour en ~2 min ✓
 
-1. Google Drive → clic droit sur la photo → **Gérer les versions** → **Importer une nouvelle version**
-2. Ouvrir ce lien dans un navigateur pour redéployer le site :
-   `https://api.vercel.com/v1/integrations/deploy/prj_5RhQK5vfF5b5Q4xGjX1d1Gl9d3Hk/ZDT1R9Slka`
-3. Le site est mis à jour en ~2 min ✓
+> ⚠️ **Taille maximale recommandée : 1 MB par image.**
+> Au-delà, les performances du site se dégradent. Compresse tes photos sur
+> [squoosh.app](https://squoosh.app) avant de les uploader si nécessaire.
 
-Pour ajouter une photo avec un nouveau fichier Drive, modifier `images.config.json`
-(les instructions sont incluses dans le fichier).
+Fichiers actuels : `hero.jpg` · `terrasse.jpg` · `interieur.jpg` · `puis_lumineux.jpg` · `exterieur.JPEG`
 
 ## Commandes
 
 | Commande | Action |
 |---|---|
-| `npm run download-images` | Télécharge les images depuis Google Drive |
 | `npm run dev` | Serveur de développement — `localhost:4321` |
 | `npm run build` | Build de production vers `./dist/` |
 | `npm run preview` | Prévisualisation du build en local |
+| `npm run generate-menu` | Régénère `public/menu.png` depuis `carte/menu.html` |
 
 ## Déploiement
 
@@ -60,6 +58,5 @@ Chaque push sur `main` déclenche un build automatique.
 ## À compléter
 
 - [ ] Remplacer `YOUR_SLUG` dans `src/pages/reservation.astro` par le slug Table Agent réel
-- [ ] Remplacer `public/menu.pdf` par le vrai menu
 - [x] Configurer le domaine `.be` sur Vercel → `tabledeladyle.be`
 - [x] Mettre à jour `site` dans `astro.config.mjs` avec le domaine final
