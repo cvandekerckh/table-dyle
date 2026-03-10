@@ -20,6 +20,10 @@ import Layout from '../layouts/Layout.astro';
   </section>
 
   <section class="section section--grey menu-carte">
+    <div class="menu-carte__header">
+      <div class="ornament">✦</div>
+      <p class="menu-carte__label"><em>Notre carte du moment</em></p>
+    </div>
     <img
       src="/images/menu.png"
       alt="Carte de La Table de la Dyle"
@@ -54,8 +58,38 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .menu-carte {
-    padding-top: var(--space-lg);
+    padding-top: var(--space-md);
     padding-bottom: var(--space-lg);
+  }
+
+  .menu-carte__header {
+    text-align: center;
+    margin-bottom: var(--space-md);
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0 auto var(--space-sm);
+    max-width: 200px;
+    font-family: var(--font-heading);
+    color: var(--color-grey-text);
+    font-size: 0.8rem;
+  }
+
+  .ornament::before,
+  .ornament::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-grey-mid);
+  }
+
+  .menu-carte__label {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-grey-text);
   }
 
   .carte-img {

@@ -23,8 +23,10 @@ import Layout from '../layouts/Layout.astro';
   <!-- ========================================================
        CONCEPT
        ======================================================== -->
-  <section class="section section--grey">
+  <section class="section concept-section">
     <div class="container text-center">
+      <img src="/images/logo.jpg" alt="La Table de la Dyle" class="concept-logo" />
+      <div class="ornament">✦</div>
       <p class="section__label">Notre identité</p>
       <h2 class="section__heading">Une brasserie belge authentique</h2>
       <p class="section__intro">
@@ -60,6 +62,8 @@ import Layout from '../layouts/Layout.astro';
           </p>
         </div>
       </div>
+
+      <p class="concept-quote"><em>Chaque plat raconte une histoire.</em></p>
     </div>
   </section>
 
@@ -258,6 +262,51 @@ import Layout from '../layouts/Layout.astro';
   }
 
   /* ---- Concept ---- */
+  .concept-section {
+    position: relative;
+    background: var(--color-grey-light) url('/images/ambiance.jpg') center/cover no-repeat;
+  }
+
+  .concept-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(245, 245, 245, 0.93);
+  }
+
+  .concept-section .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  .concept-logo {
+    height: 80px;
+    width: auto;
+    max-width: 220px;
+    margin: 0 auto var(--space-xs);
+    display: block;
+    object-fit: contain;
+  }
+
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin: var(--space-sm) auto var(--space-md);
+    max-width: 200px;
+    font-family: var(--font-heading);
+    color: var(--color-grey-text);
+    font-size: 0.8rem;
+  }
+
+  .ornament::before,
+  .ornament::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-grey-mid);
+  }
+
   .concept-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -269,7 +318,8 @@ import Layout from '../layouts/Layout.astro';
   .concept-card {
     background: var(--color-white);
     padding: var(--space-md);
-    border-top: 2px solid var(--color-grey-mid);
+    border-top: 2px solid var(--color-black);
+    box-shadow: 0 2px 20px rgba(0,0,0,0.05);
   }
 
   .concept-card--featured {
@@ -277,9 +327,16 @@ import Layout from '../layouts/Layout.astro';
   }
 
   .concept-card__icon {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
+    width: 3rem;
+    height: 3rem;
+    border: 1px solid var(--color-grey-mid);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     margin-bottom: var(--space-sm);
-    opacity: 0.4;
+    opacity: 0.6;
   }
 
   .concept-card h3 {
@@ -290,6 +347,13 @@ import Layout from '../layouts/Layout.astro';
     color: var(--color-grey-text);
     font-size: 0.95rem;
     max-width: 100%;
+  }
+
+  .concept-quote {
+    margin-top: var(--space-lg);
+    font-family: var(--font-heading);
+    font-size: 1.15rem;
+    color: var(--color-grey-text);
   }
 
   /* ---- Terrasse ---- */

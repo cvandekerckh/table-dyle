@@ -20,17 +20,22 @@ import Layout from '../layouts/Layout.astro';
 
   <section class="section resa-widget">
     <div class="container">
-      <div class="coming-soon">
-        <p class="coming-soon__icon">📅</p>
-        <h2>Réservation en ligne bientôt disponible</h2>
-        <p>
-          Notre système de réservation en ligne est en cours de mise en place.
-          En attendant, contactez-nous directement par téléphone ou par e-mail —
-          nous serons ravis de vous trouver une table&nbsp;!
-        </p>
-        <div class="coming-soon__links">
-          <a href="tel:+32476820747" class="btn btn--primary">+32 476 82 07 47</a>
-          <a href="mailto:latabledeladyle@gmail.com" class="btn btn--outline-dark">latabledeladyle@gmail.com</a>
+      <div class="resa-split">
+        <div class="resa-split__image">
+          <img src="/images/dinner.jpg" alt="Table dressée à La Table de la Dyle" loading="eager" />
+        </div>
+        <div class="coming-soon">
+          <div class="ornament">✦</div>
+          <h2>Réservation en ligne bientôt disponible</h2>
+          <p>
+            Notre système de réservation en ligne est en cours de mise en place.
+            En attendant, contactez-nous directement par téléphone ou par e-mail —
+            nous serons ravis de vous trouver une table&nbsp;!
+          </p>
+          <div class="coming-soon__links">
+            <a href="tel:+32476820747" class="btn btn--primary">+32 476 82 07 47</a>
+            <a href="mailto:latabledeladyle@gmail.com" class="btn btn--outline-dark">latabledeladyle@gmail.com</a>
+          </div>
         </div>
       </div>
     </div>
@@ -122,16 +127,60 @@ import Layout from '../layouts/Layout.astro';
     padding-top: 0;
   }
 
+  .resa-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border: 2px solid var(--color-black);
+    overflow: hidden;
+    min-height: 420px;
+  }
+
+  @media (max-width: 768px) {
+    .resa-split {
+      grid-template-columns: 1fr;
+    }
+
+    .resa-split__image {
+      min-height: 220px;
+    }
+  }
+
+  .resa-split__image img {
+    width: 100%;
+    height: 100%;
+    min-height: 420px;
+    object-fit: cover;
+    display: block;
+  }
+
   .coming-soon {
     text-align: center;
     padding: var(--space-xl) var(--space-md);
     background: var(--color-white);
-    border: 1px solid var(--color-grey-mid);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
 
-  .coming-soon__icon {
-    font-size: 3rem;
-    margin-bottom: var(--space-sm);
+  .ornament {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin: 0 auto var(--space-md);
+    width: 100%;
+    max-width: 180px;
+    font-family: var(--font-heading);
+    color: var(--color-grey-text);
+    font-size: 0.8rem;
+  }
+
+  .ornament::before,
+  .ornament::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--color-grey-mid);
   }
 
   .coming-soon h2 {
@@ -140,7 +189,7 @@ import Layout from '../layouts/Layout.astro';
 
   .coming-soon p {
     color: var(--color-grey-text);
-    max-width: 520px;
+    max-width: 400px;
     margin: 0 auto var(--space-md);
   }
 
@@ -160,7 +209,7 @@ import Layout from '../layouts/Layout.astro';
   .info-card {
     background: var(--color-white);
     padding: var(--space-md);
-    border-top: 2px solid var(--color-black);
+    border-left: 3px solid var(--color-black);
   }
 
   .info-card h3 {
