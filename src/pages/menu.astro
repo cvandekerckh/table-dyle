@@ -4,7 +4,7 @@ import Layout from '../layouts/Layout.astro';
 
 <Layout
   title="Notre Menu — La Table de la Dyle, Brasserie Belge Wavre"
-  description="Consultez la carte de La Table de la Dyle : cuisine belge de saison, produits frais et locaux. Menu disponible en PDF."
+  description="Consultez la carte de La Table de la Dyle : cuisine belge de saison, produits frais et locaux."
 >
 
   <section class="section menu-hero">
@@ -16,29 +16,17 @@ import Layout from '../layouts/Layout.astro';
         Notre menu évolue régulièrement pour refléter le meilleur du moment
         et les saveurs du terroir belge.
       </p>
-      <a href="/menu.pdf" download class="btn btn--primary">
-        Télécharger le menu (PDF)
-      </a>
     </div>
   </section>
 
-  <section class="section section--grey">
+  <section class="section section--grey menu-carte">
     <div class="container">
-      <p class="viewer-label">Consulter le menu directement :</p>
-      <div class="pdf-viewer-wrap">
-        <iframe
-          src="/menu.pdf"
-          width="100%"
-          height="800"
-          title="Menu de La Table de la Dyle"
-          aria-label="Menu PDF de La Table de la Dyle"
-        >
-          <p>
-            Votre navigateur ne supporte pas l'affichage PDF.
-            <a href="/menu.pdf">Téléchargez le menu ici.</a>
-          </p>
-        </iframe>
-      </div>
+      <img
+        src="/menu.png"
+        alt="Carte de La Table de la Dyle"
+        class="carte-img"
+        loading="eager"
+      />
     </div>
   </section>
 
@@ -67,27 +55,18 @@ import Layout from '../layouts/Layout.astro';
     margin-bottom: var(--space-sm);
   }
 
-  .menu-hero .btn {
-    margin-top: var(--space-sm);
+  .menu-carte {
+    padding-top: var(--space-lg);
+    padding-bottom: var(--space-lg);
   }
 
-  .viewer-label {
-    font-size: 0.85rem;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    color: var(--color-grey-text);
-    margin-bottom: var(--space-sm);
-    max-width: 100%;
-  }
-
-  .pdf-viewer-wrap {
-    border: 1px solid var(--color-grey-mid);
-    background: var(--color-white);
-  }
-
-  .pdf-viewer-wrap iframe {
+  .carte-img {
     display: block;
-    border: none;
+    max-width: 860px;
+    width: 100%;
+    margin: 0 auto;
+    border: 1px solid var(--color-grey-mid);
+    box-shadow: 0 4px 32px rgba(0,0,0,0.10);
   }
 
   .menu-cta-group {

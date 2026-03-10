@@ -1,17 +1,32 @@
 #!/usr/bin/env bash
 # Downloads restaurant images from Google Drive into public/images/.
-# Run locally after a fresh checkout: npm run download-images
+# Image URLs are configured in images.config.json at the project root.
+# Run locally: npm run download-images
 # Runs automatically on Vercel before the build step.
 set -e
 
-mkdir -p public/images
-
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+ROOT="$SCRIPT_DIR/.."
+CONFIG="$ROOT/images.config.json"
 BASE="https://drive.google.com/uc?export=download"
 
+mkdir -p "$ROOT/public/images"
+
 echo "Downloading images from Google Drive..."
-curl -fsSL -o public/images/hero.PNG           "$BASE&id=1qrtMtBSgp_jjC-r36fk2QP1so_HUiETL"
-curl -fsSL -o public/images/terrasse.jpg       "$BASE&id=10QTegRfGcyEofnHoEiHwqnYy2pJeK2UR"
-curl -fsSL -o public/images/interieur.PNG      "$BASE&id=137uDvSjKSRIUgSojLdwVmIMmQHahf8PI"
-curl -fsSL -o public/images/puis_lumineux.jpg  "$BASE&id=1XpcNTUTVbQw7FkdBzYo7zVKO9QzAhhGG"
-curl -fsSL -o public/images/exterieur.JPEG     "$BASE&id=1vKTpA3avpJJIbH9S96qPltqZjvrXspKP"
-echo "✓ Images downloaded to public/images/"
+
+# Parse images.config.json with Node (already available in the Astro project)
+node -e "
+  const c = require('$CONFIG');
+  Object.entries(c).forEach(([filename, url]) => {
+    if (!filename.startsWith('_') && typeof url === 'string') {
+      // Extract file ID from Drive sharing URL: /d/FILE_ID/
+      const match = url.match(/\/d\/([^/]+)/);
+      if (match) console.log(filename + ' ' + match[1]);
+    }
+  });
+" | while read -r filename id; do
+  curl -fsSL -o "$ROOT/public/images/$filename" "$BASE&id=$id"
+  echo "  ✓ $filename"
+done
+
+echo "✓ All images downloaded to public/images/"

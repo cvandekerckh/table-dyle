@@ -28,13 +28,20 @@ npm run dev               # http://localhost:4321
 ## Images
 
 Les images sont **exclues du dépôt git** et stockées sur Google Drive.
-Le script `scripts/download-images.sh` les télécharge automatiquement.
+Le script `scripts/download-images.sh` les télécharge automatiquement lors du build.
 
 - **Local :** `npm run download-images`
 - **Vercel :** exécuté automatiquement avant le build (via `vercel.json`)
 
-Pour mettre à jour une image : remplacer le fichier sur Google Drive (même lien de partage).
-Le prochain build utilisera automatiquement la nouvelle version.
+### Mettre à jour une photo (sans toucher au code)
+
+1. Google Drive → clic droit sur la photo → **Gérer les versions** → **Importer une nouvelle version**
+2. Ouvrir ce lien dans un navigateur pour redéployer le site :
+   `https://api.vercel.com/v1/integrations/deploy/prj_5RhQK5vfF5b5Q4xGjX1d1Gl9d3Hk/ZDT1R9Slka`
+3. Le site est mis à jour en ~2 min ✓
+
+Pour ajouter une photo avec un nouveau fichier Drive, modifier `images.config.json`
+(les instructions sont incluses dans le fichier).
 
 ## Commandes
 
