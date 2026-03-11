@@ -18,16 +18,20 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <section class="section resa-widget">
-    <div class="container">
-      <iframe
-        src="https://octotable.com/book/restaurant/1001980/booking/new"
-        width="100%"
-        height="700"
-        frameborder="0"
-        title="Réserver une table — La Table de la Dyle"
-        loading="lazy"
-      ></iframe>
+  <section class="section resa-cta">
+    <div class="container text-center">
+      <p class="resa-cta__text">
+        Notre système de réservation en ligne est disponible via le bouton ci-dessous.
+      </p>
+      <a
+        href="https://octotable.com/book/restaurant/1001980/booking/new"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="btn btn--primary btn--large"
+      >
+        Réserver une table en ligne
+      </a>
+      <p class="resa-cta__note">Vous serez redirigé vers notre page de réservation sécurisée.</p>
     </div>
   </section>
 
@@ -154,13 +158,26 @@ import Layout from '../layouts/Layout.astro';
     }
   }
 
-  .resa-widget {
-    padding-top: var(--space-md);
+  .resa-cta {
+    padding: var(--space-xl) 0;
   }
 
-  .resa-widget iframe {
-    display: block;
-    border: none;
+  .resa-cta__text {
+    color: var(--color-grey-text);
+    margin-bottom: var(--space-md);
+    font-size: 1.05rem;
+  }
+
+  .resa-cta__note {
+    margin-top: var(--space-sm);
+    font-size: 0.85rem;
+    color: var(--color-grey-text);
+    opacity: 0.7;
+  }
+
+  .btn--large {
+    font-size: 1.1rem;
+    padding: 1rem 2.5rem;
   }
 
   .info-grid {
