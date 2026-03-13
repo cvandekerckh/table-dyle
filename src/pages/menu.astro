@@ -24,12 +24,28 @@ import Layout from '../layouts/Layout.astro';
       <div class="ornament">✦</div>
       <p class="menu-carte__label"><em>Notre carte du moment</em></p>
     </div>
-    <img
-      src="/images/menu.png"
-      alt="Carte de La Table de la Dyle"
-      class="carte-img"
-      loading="eager"
-    />
+
+    <div class="pdf-viewer" id="pdf-viewer">
+      <div class="pdf-toolbar">
+        <button class="pdf-btn" id="prev-page" aria-label="Page précédente" disabled>&#8592;</button>
+        <span class="pdf-page-info"><span id="page-num">1</span> / <span id="page-count">—</span></span>
+        <button class="pdf-btn" id="next-page" aria-label="Page suivante" disabled>&#8594;</button>
+        <a href="/menu/menu.pdf" download class="pdf-download" aria-label="Télécharger le menu">
+          &#8659; Télécharger
+        </a>
+      </div>
+
+      <div class="pdf-canvas-wrap">
+        <canvas id="pdf-canvas"></canvas>
+        <div class="pdf-loading" id="pdf-loading">Chargement du menu…</div>
+      </div>
+    </div>
+
+    <noscript>
+      <p class="pdf-noscript">
+        <a href="/menu/menu.pdf" class="btn btn--primary">Voir le menu (PDF)</a>
+      </p>
+    </noscript>
   </section>
 
   <section class="section section--dark text-center">
@@ -48,7 +64,85 @@ import Layout from '../layouts/Layout.astro';
 
 </Layout>
 
+<script>
+  const PDFJS_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.9.155/pdf.min.mjs';
+  const WORKER_CDN = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.9.155/pdf.worker.min.mjs';
+
+  async function initViewer() {
+    const loadingEl = document.getElementById('pdf-loading') as HTMLElement;
+    const canvas = document.getElementById('pdf-canvas') as HTMLCanvasElement;
+    const prevBtn = document.getElementById('prev-page') as HTMLButtonElement;
+    const nextBtn = document.getElementById('next-page') as HTMLButtonElement;
+    const pageNumEl = document.getElementById('page-num') as HTMLElement;
+    const pageCountEl = document.getElementById('page-count') as HTMLElement;
+
+    try {
+      // @ts-ignore
+      const pdfjsLib = await import(PDFJS_CDN);
+      pdfjsLib.GlobalWorkerOptions.workerSrc = WORKER_CDN;
+
+      const pdf = await pdfjsLib.getDocument('/menu/menu.pdf').promise;
+      let currentPage = 1;
+      const totalPages = pdf.numPages;
+
+      pageCountEl.textContent = String(totalPages);
+      loadingEl.style.display = 'none';
+      canvas.style.display = 'block';
+      prevBtn.disabled = true;
+      nextBtn.disabled = totalPages <= 1;
+
+      async function renderPage(num: number) {
+        prevBtn.disabled = true;
+        nextBtn.disabled = true;
+
+        const page = await pdf.getPage(num);
+        const container = canvas.parentElement as HTMLElement;
+        const containerWidth = container.clientWidth;
+        const viewport = page.getViewport({ scale: 1 });
+        const scale = containerWidth / viewport.width;
+        const scaledViewport = page.getViewport({ scale });
+
+        canvas.width = scaledViewport.width;
+        canvas.height = scaledViewport.height;
+
+        const ctx = canvas.getContext('2d')!;
+        await page.render({ canvasContext: ctx, viewport: scaledViewport }).promise;
+
+        pageNumEl.textContent = String(num);
+        prevBtn.disabled = num <= 1;
+        nextBtn.disabled = num >= totalPages;
+      }
+
+      prevBtn.addEventListener('click', () => {
+        if (currentPage > 1) { currentPage--; renderPage(currentPage); }
+      });
+      nextBtn.addEventListener('click', () => {
+        if (currentPage < totalPages) { currentPage++; renderPage(currentPage); }
+      });
+
+      // Re-render on resize (debounced)
+      let resizeTimer: ReturnType<typeof setTimeout>;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => renderPage(currentPage), 200);
+      });
+
+      await renderPage(1);
+    } catch (e) {
+      loadingEl.textContent = 'Impossible de charger le menu. ';
+      const link = document.createElement('a');
+      link.href = '/menu/menu.pdf';
+      link.textContent = 'Télécharger le PDF';
+      link.className = 'pdf-fallback-link';
+      loadingEl.appendChild(link);
+    }
+  }
+
+  initViewer();
+</script>
+
 <style>
+  /* ── Hero ── */
   .menu-hero {
     min-height: 55vh;
     display: flex;
@@ -74,9 +168,7 @@ import Layout from '../layouts/Layout.astro';
     max-width: 700px;
   }
 
-  .menu-hero__content .section__label {
-    opacity: 0.6;
-  }
+  .menu-hero__content .section__label { opacity: 0.6; }
 
   .menu-hero__content h1 {
     color: var(--color-white);
@@ -91,6 +183,7 @@ import Layout from '../layouts/Layout.astro';
     margin: 0 auto;
   }
 
+  /* ── Carte section ── */
   .menu-carte {
     padding-top: var(--space-md);
     padding-bottom: var(--space-lg);
@@ -101,7 +194,7 @@ import Layout from '../layouts/Layout.astro';
     flex-direction: column;
     align-items: center;
     margin: 0 auto var(--space-md);
-    max-width: 1100px;
+    max-width: 860px;
     width: 100%;
   }
 
@@ -131,14 +224,102 @@ import Layout from '../layouts/Layout.astro';
     text-align: center;
   }
 
-  .carte-img {
-    display: block;
-    width: 100%;
-    max-width: 1100px;
+  /* ── PDF viewer ── */
+  .pdf-viewer {
+    max-width: 860px;
     margin: 0 auto;
-    box-shadow: 0 4px 32px rgba(0,0,0,0.10);
+    background: var(--color-white);
+    box-shadow: 0 4px 40px rgba(0, 0, 0, 0.12);
   }
 
+  .pdf-toolbar {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    padding: 0.75rem 1.25rem;
+    background: var(--color-black);
+    color: var(--color-white);
+  }
+
+  .pdf-btn {
+    background: none;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    color: var(--color-white);
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 2px;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background 0.15s, border-color 0.15s;
+  }
+
+  .pdf-btn:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.6);
+  }
+
+  .pdf-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+  }
+
+  .pdf-page-info {
+    font-size: 0.85rem;
+    letter-spacing: 0.04em;
+    min-width: 4rem;
+    text-align: center;
+    flex: 1;
+  }
+
+  .pdf-download {
+    margin-left: auto;
+    color: var(--color-white);
+    text-decoration: none;
+    font-size: 0.8rem;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    transition: opacity 0.15s;
+  }
+
+  .pdf-download:hover { opacity: 1; }
+
+  .pdf-canvas-wrap {
+    position: relative;
+    background: #e8e8e8;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  #pdf-canvas {
+    display: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .pdf-loading {
+    font-family: var(--font-heading);
+    font-size: 1rem;
+    color: var(--color-grey-text);
+    padding: var(--space-lg);
+  }
+
+  .pdf-fallback-link {
+    color: var(--color-black);
+    text-decoration: underline;
+  }
+
+  .pdf-noscript {
+    text-align: center;
+    margin-top: var(--space-sm);
+  }
+
+  /* ── CTA section ── */
   .menu-cta-group {
     display: flex;
     gap: var(--space-sm);
