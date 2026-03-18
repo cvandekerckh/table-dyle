@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import reservationConfig from '../config/reservation.json';
+const reservationsOpen = reservationConfig.open;
 ---
 
 <Layout
@@ -12,28 +14,54 @@ import Layout from '../layouts/Layout.astro';
       <p class="section__label">Bienvenue chez nous</p>
       <h1>Réserver une table</h1>
       <p class="resa-hero__intro">
-        Réservez votre table à La Table de la Dyle en quelques secondes
-        via notre système de réservation en ligne. Nous avons hâte de vous accueillir !
+        {reservationsOpen
+          ? "Réservez votre table à La Table de la Dyle en quelques secondes via notre système de réservation en ligne. Nous avons hâte de vous accueillir !"
+          : "La Table de la Dyle ouvrira bientôt ses portes. Nous serons ravis de vous accueillir très prochainement."}
       </p>
     </div>
   </section>
 
-  <section class="section resa-cta">
-    <div class="container text-center">
-      <p class="resa-cta__text">
-        Notre système de réservation en ligne est disponible via le bouton ci-dessous.
-      </p>
-      <a
-        href="https://octotable.com/book/restaurant/1001980/booking/new"
-        target="_blank"
-        rel="noopener noreferrer"
-        class="btn btn--primary btn--large"
-      >
-        Réserver une table en ligne
-      </a>
-      <p class="resa-cta__note">Vous serez redirigé vers notre page de réservation sécurisée.</p>
-    </div>
-  </section>
+  {reservationsOpen ? (
+    <section class="section resa-cta">
+      <div class="container text-center">
+        <p class="resa-cta__text">
+          Notre système de réservation en ligne est disponible via le bouton ci-dessous.
+        </p>
+        <a
+          href="https://octotable.com/book/restaurant/1001980/booking/new"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--primary btn--large"
+        >
+          Réserver une table en ligne
+        </a>
+        <p class="resa-cta__note">Vous serez redirigé vers notre page de réservation sécurisée.</p>
+      </div>
+    </section>
+  ) : (
+    <section class="section resa-closed">
+      <div class="container text-center">
+        <div class="resa-closed__icon" aria-hidden="true">✦</div>
+        <h2 class="resa-closed__heading">Réservations bientôt disponibles</h2>
+        <p class="resa-closed__text">
+          Le restaurant n'est pas encore ouvert.<br />
+          Revenez nous voir prochainement&nbsp;!
+        </p>
+        <div class="resa-closed__divider"></div>
+        <p class="resa-closed__contact">
+          En attendant, n'hésitez pas à nous contacter directement&nbsp;:
+        </p>
+        <div class="contact-links">
+          <a href="tel:+32476820747" class="btn btn--outline-dark">
+            +32 476 82 07 47
+          </a>
+          <a href="mailto:latabledeladyle@gmail.com" class="btn btn--outline-dark">
+            latabledeladyle@gmail.com
+          </a>
+        </div>
+      </div>
+    </section>
+  )}
 
   <section class="section section--grey">
     <div class="container">
@@ -87,23 +115,25 @@ import Layout from '../layouts/Layout.astro';
     </div>
   </section>
 
-  <section class="section text-center">
-    <div class="container">
-      <h2>Vous préférez nous appeler&nbsp;?</h2>
-      <p class="section__intro">
-        Notre équipe est disponible pendant les heures d'ouverture
-        pour répondre à toutes vos questions.
-      </p>
-      <div class="contact-links">
-        <a href="tel:+32476820747" class="btn btn--outline-dark">
-          +32 476 82 07 47
-        </a>
-        <a href="mailto:latabledeladyle@gmail.com" class="btn btn--outline-dark">
-          latabledeladyle@gmail.com
-        </a>
+  {reservationsOpen && (
+    <section class="section text-center">
+      <div class="container">
+        <h2>Vous préférez nous appeler&nbsp;?</h2>
+        <p class="section__intro">
+          Notre équipe est disponible pendant les heures d'ouverture
+          pour répondre à toutes vos questions.
+        </p>
+        <div class="contact-links">
+          <a href="tel:+32476820747" class="btn btn--outline-dark">
+            +32 476 82 07 47
+          </a>
+          <a href="mailto:latabledeladyle@gmail.com" class="btn btn--outline-dark">
+            latabledeladyle@gmail.com
+          </a>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
+  )}
 
 </Layout>
 
@@ -249,5 +279,44 @@ import Layout from '../layouts/Layout.astro';
     justify-content: center;
     flex-wrap: wrap;
     margin-top: var(--space-sm);
+  }
+
+  /* ---- Closed state ---- */
+  .resa-closed {
+    padding: var(--space-xl) 0;
+  }
+
+  .resa-closed__icon {
+    font-size: 1.5rem;
+    color: var(--color-grey-text);
+    opacity: 0.4;
+    margin-bottom: var(--space-sm);
+  }
+
+  .resa-closed__heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.6rem, 4vw, 2.4rem);
+    color: var(--color-black);
+    margin-bottom: var(--space-sm);
+  }
+
+  .resa-closed__text {
+    font-size: 1.05rem;
+    color: var(--color-grey-text);
+    line-height: 1.8;
+    margin-bottom: var(--space-md);
+  }
+
+  .resa-closed__divider {
+    width: 3rem;
+    height: 1px;
+    background: var(--color-grey-mid);
+    margin: var(--space-md) auto;
+  }
+
+  .resa-closed__contact {
+    font-size: 0.9rem;
+    color: var(--color-grey-text);
+    margin-bottom: var(--space-sm);
   }
 </style>
