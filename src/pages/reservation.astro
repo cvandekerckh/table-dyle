@@ -32,6 +32,16 @@ const reservationsOpen = reservationConfig.open;
           data-auth-server-url="https://api.octotable.com"
           data-booking-engine-url="https://octotable.com/book/restaurant"
         ></script>
+        <div class="resa-widget__cta">
+          <a
+            href="https://octotable.com/book/restaurant/1001980/booking/new"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn btn--primary"
+          >
+            Réserver une table en ligne
+          </a>
+        </div>
       </div>
     </section>
   ) : (
@@ -186,6 +196,11 @@ const reservationsOpen = reservationConfig.open;
 
   .resa-widget {
     padding: var(--space-xl) 0;
+  }
+
+  .resa-widget__cta {
+    text-align: center;
+    margin-top: var(--space-md);
   }
 
   .info-grid {
