@@ -22,20 +22,16 @@ const reservationsOpen = reservationConfig.open;
   </section>
 
   {reservationsOpen ? (
-    <section class="section resa-cta">
-      <div class="container text-center">
-        <p class="resa-cta__text">
-          Notre système de réservation en ligne est disponible via le bouton ci-dessous.
-        </p>
-        <a
-          href="https://octotable.com/book/restaurant/1001980/booking/new"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="btn btn--primary btn--large"
-        >
-          Réserver une table en ligne
-        </a>
-        <p class="resa-cta__note">Vous serez redirigé vers notre page de réservation sécurisée.</p>
+    <section class="section resa-widget">
+      <div class="container">
+        <script
+          type="text/javascript"
+          src="https://octotable.com/book/assets/js/widget.js"
+          data-propertyId="1001980"
+          data-octotable-key="ad090bc3e1bd406ea47388aa7b9d2dd0"
+          data-auth-server-url="https://api.octotable.com"
+          data-booking-engine-url="https://octotable.com/book/restaurant"
+        ></script>
       </div>
     </section>
   ) : (
@@ -188,26 +184,8 @@ const reservationsOpen = reservationConfig.open;
     }
   }
 
-  .resa-cta {
+  .resa-widget {
     padding: var(--space-xl) 0;
-  }
-
-  .resa-cta__text {
-    color: var(--color-grey-text);
-    margin-bottom: var(--space-md);
-    font-size: 1.05rem;
-  }
-
-  .resa-cta__note {
-    margin-top: var(--space-sm);
-    font-size: 0.85rem;
-    color: var(--color-grey-text);
-    opacity: 0.7;
-  }
-
-  .btn--large {
-    font-size: 1.1rem;
-    padding: 1rem 2.5rem;
   }
 
   .info-grid {
