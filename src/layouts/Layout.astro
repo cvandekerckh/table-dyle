@@ -1,5 +1,7 @@
 ---
 import '../styles/global.css';
+import reservationConfig from '../config/reservation.json';
+const reservationsOpen = reservationConfig.open;
 
 interface Props {
   title: string;
@@ -104,14 +106,16 @@ const navLinks = [
     </footer>
 
     <!-- Octotable reservation widget -->
-    <script
-      type="text/javascript"
-      src="https://octotable.com/book/assets/js/widget.js"
-      data-propertyId="1001980"
-      data-octotable-key="ad090bc3e1bd406ea47388aa7b9d2dd0"
-      data-auth-server-url="https://api.octotable.com"
-      data-booking-engine-url="https://octotable.com/book/restaurant"
-    ></script>
+    {reservationsOpen && (
+      <script
+        type="text/javascript"
+        src="https://octotable.com/book/assets/js/widget.js"
+        data-propertyId="1001980"
+        data-octotable-key="ad090bc3e1bd406ea47388aa7b9d2dd0"
+        data-auth-server-url="https://api.octotable.com"
+        data-booking-engine-url="https://octotable.com/book/restaurant"
+      ></script>
+    )}
 
     <!-- Mobile nav toggle -->
     <script>

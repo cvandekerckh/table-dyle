@@ -1,5 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import reservationConfig from '../config/reservation.json';
+const reservationsOpen = reservationConfig.open;
 ---
 
 <Layout
@@ -15,7 +17,7 @@ import Layout from '../layouts/Layout.astro';
       <p class="hero__label">Brasserie Belge · Wavre</p>
       <h1>La Table<br /><em>de la Dyle</em></h1>
       <p class="hero__tagline">Brasserie belge · Produits frais · Terrasse</p>
-      <a href="https://octotable.com/book/restaurant/1001980/booking/new" target="_blank" rel="noopener noreferrer" class="btn btn--outline">Réserver une table</a>
+      <a href={reservationsOpen ? "https://octotable.com/book/restaurant/1001980/booking/new" : "/reservation"} target={reservationsOpen ? "_blank" : undefined} rel={reservationsOpen ? "noopener noreferrer" : undefined} class="btn btn--outline">Réserver une table</a>
     </div>
     <div class="hero__scroll" aria-hidden="true">↓</div>
   </section>
@@ -190,7 +192,7 @@ import Layout from '../layouts/Layout.astro';
         Réservez votre table en quelques clics, directement en ligne.
         Nous avons hâte de vous accueillir.
       </p>
-      <a href="https://octotable.com/book/restaurant/1001980/booking/new" target="_blank" rel="noopener noreferrer" class="btn btn--outline">Réserver une table</a>
+      <a href={reservationsOpen ? "https://octotable.com/book/restaurant/1001980/booking/new" : "/reservation"} target={reservationsOpen ? "_blank" : undefined} rel={reservationsOpen ? "noopener noreferrer" : undefined} class="btn btn--outline">Réserver une table</a>
     </div>
   </section>
 
