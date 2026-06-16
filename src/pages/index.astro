@@ -124,11 +124,13 @@ const reservationsOpen = reservationConfig.open;
       <h2 class="section__heading">Notre établissement</h2>
     </div>
     <div class="photo-grid">
-      <img src="/images/interieur.jpg"      alt="La salle de La Table de la Dyle"   loading="lazy" class="photo-grid-img" />
-      <img src="/images/puis_lumineux.jpg"  alt="Ambiance chaleureuse"              loading="lazy" class="photo-grid-img" />
-      <img src="/images/exterieur.JPEG"     alt="Vue extérieure du restaurant"      loading="lazy" class="photo-grid-img" />
+      <img src="/images/salle-ronde.jpg"   alt="La salle principale de La Table de la Dyle et son puits de lumière" loading="lazy" class="photo-grid-img" />
+      <img src="/images/bar.jpg"           alt="Le bar et ses bières belges à la pression"                         loading="lazy" class="photo-grid-img" />
+      <img src="/images/salon-belge.jpg"   alt="Salon privatif à l'ambiance belge"                                 loading="lazy" class="photo-grid-img" />
+      <img src="/images/salle-jour.jpg"    alt="La salle baignée de lumière en journée"                            loading="lazy" class="photo-grid-img" />
+      <img src="/images/dressage-vin.jpg"  alt="Table dressée et sélection de vins"                                loading="lazy" class="photo-grid-img" />
+      <img src="/images/facade.jpg"        alt="La façade de la brasserie au 27 rue Charles Sambon à Wavre"        loading="lazy" class="photo-grid-img" />
     </div>
-    <p class="photos-caption">D'autres photos à venir. Notre établissement vient tout juste d'ouvrir ses portes.</p>
   </section>
 
   <!-- ========================================================
@@ -441,7 +443,7 @@ const reservationsOpen = reservationConfig.open;
   /* ---- Photos grid ---- */
   .photo-grid-img {
     width: 100%;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 3 / 4;
     object-fit: cover;
     display: block;
   }
@@ -457,16 +459,6 @@ const reservationsOpen = reservationConfig.open;
     .photo-grid {
       grid-template-columns: repeat(2, 1fr);
     }
-  }
-
-  .photos-caption {
-    text-align: center;
-    font-family: var(--font-heading);
-    font-style: italic;
-    font-size: 0.9rem;
-    color: var(--color-grey-text);
-    margin-top: var(--space-md);
-    padding: 0 var(--space-md);
   }
 
   /* ---- Hours ---- */
