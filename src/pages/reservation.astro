@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import reservationConfig from '../config/reservation.json';
+import closureConfig from '../config/closure.json';
 const reservationsOpen = reservationConfig.open;
 ---
 
@@ -68,6 +69,9 @@ const reservationsOpen = reservationConfig.open;
         <div class="info-card">
           <h3>Informations pratiques</h3>
           <ul class="info-list">
+            {closureConfig.active && (
+              <li><strong>{closureConfig.message}</strong> Les réservations restent possibles pour les dates suivantes.</li>
+            )}
             <li>Les réservations sont acceptées jusqu'à 20 minutes avant le service.</li>
             <li>Pour les groupes de plus de 10 personnes, veuillez nous contacter par téléphone ou par e-mail.</li>
             <li>En cas d'annulation, merci de nous appeler directement.</li>
@@ -107,6 +111,9 @@ const reservationsOpen = reservationConfig.open;
               <dd>11h00 – 22h00</dd>
             </div>
           </dl>
+          {closureConfig.active && (
+            <p class="closure-note">{closureConfig.message}</p>
+          )}
         </div>
 
       </div>

@@ -1,6 +1,7 @@
 ---
 import '../styles/global.css';
 import reservationConfig from '../config/reservation.json';
+import closureConfig from '../config/closure.json';
 const reservationsOpen = reservationConfig.open;
 
 interface Props {
@@ -32,6 +33,11 @@ const navLinks = [
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   </head>
   <body>
+
+    <!-- Fermeture annuelle -->
+    {closureConfig.active && (
+      <p class="closure-banner" role="status">{closureConfig.message}</p>
+    )}
 
     <!-- Navigation -->
     <nav class="site-nav" aria-label="Navigation principale">
@@ -90,6 +96,9 @@ const navLinks = [
             Mardi : 18h–22h<br />
             Mer – Dim : 11h–22h
           </p>
+          {closureConfig.active && (
+            <p class="site-footer__closure">{closureConfig.message}</p>
+          )}
         </div>
 
         <div>

@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import reservationConfig from '../config/reservation.json';
+import closureConfig from '../config/closure.json';
 const reservationsOpen = reservationConfig.open;
 ---
 
@@ -181,6 +182,9 @@ const reservationsOpen = reservationConfig.open;
           </tbody>
         </table>
       </div>
+      {closureConfig.active && (
+        <p class="closure-note">{closureConfig.message}</p>
+      )}
     </div>
   </section>
 
@@ -465,6 +469,13 @@ const reservationsOpen = reservationConfig.open;
   .hours-table-wrap {
     overflow-x: auto;
     margin-top: var(--space-md);
+  }
+
+  /* Aligne le rappel de fermeture sur la largeur du tableau */
+  .hours-table-wrap + .closure-note {
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
   }
 
   .hours-table {

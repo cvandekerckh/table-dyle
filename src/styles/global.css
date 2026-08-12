@@ -191,6 +191,33 @@ p { max-width: 65ch; }
 }
 
 /* ============================================================
+   Bandeau de fermeture annuelle
+   ============================================================ */
+.closure-banner {
+  background: var(--color-black);
+  color: var(--color-white);
+  max-width: none;
+  text-align: center;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.7rem var(--space-sm);
+  line-height: 1.5;
+}
+
+/* Rappel discret sous un bloc d'horaires */
+.closure-note {
+  display: block;
+  max-width: none;
+  margin-top: var(--space-sm);
+  font-size: 0.85rem;
+  letter-spacing: 0.04em;
+  color: var(--color-black);
+  border-top: 1px solid var(--color-grey-mid);
+  padding-top: var(--space-sm);
+}
+
+/* ============================================================
    Navigation
    ============================================================ */
 .site-nav {
@@ -333,6 +360,15 @@ p { max-width: 65ch; }
 
 .site-footer ul {
   list-style: none;
+}
+
+.site-footer p.site-footer__closure {
+  margin-top: var(--space-sm);
+  padding-top: var(--space-sm);
+  border-top: 1px solid rgba(255, 255, 255, 0.15);
+  font-size: 0.85rem;
+  line-height: 1.6;
+  opacity: 1;
 }
 
 .site-footer ul a:hover {
