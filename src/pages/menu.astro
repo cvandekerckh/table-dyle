@@ -1,5 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
+import menuConfig from '../config/menu.json';
+
+const menuMisAJour = menuConfig.updatedAt
+  ? new Intl.DateTimeFormat('fr-BE', { dateStyle: 'long', timeZone: 'Europe/Brussels' })
+      .format(new Date(menuConfig.updatedAt))
+  : null;
 ---
 
 <Layout
@@ -23,6 +29,7 @@ import Layout from '../layouts/Layout.astro';
     <div class="menu-carte__header">
       <div class="ornament">✦</div>
       <p class="menu-carte__label"><em>Notre carte du moment</em></p>
+      {menuMisAJour && <p class="menu-carte__maj">Mise à jour du {menuMisAJour}</p>}
     </div>
 
     <div class="pdf-viewer" id="pdf-viewer">
@@ -222,6 +229,12 @@ import Layout from '../layouts/Layout.astro';
     font-size: 1.5rem;
     color: var(--color-black);
     text-align: center;
+  }
+
+  .menu-carte__maj {
+    font-size: 0.85rem;
+    color: var(--color-grey-text);
+    margin-top: var(--space-xs);
   }
 
   /* ── PDF viewer ── */

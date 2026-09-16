@@ -1,0 +1,183 @@
+---
+// Espace de gestion du gérant. Page volontairement autonome : ni navigation,
+// ni pied de page, ni widget de réservation. Elle ne contient aucun secret,
+// le mot de passe est vérifié côté serveur par /api/gestion.
+import closureConfig from '../config/closure.json';
+import menuConfig from '../config/menu.json';
+import { rawDays } from '../lib/hours.js';
+
+const jours = rawDays();
+const menuMisAJour = menuConfig.updatedAt
+  ? new Intl.DateTimeFormat('fr-BE', {
+      dateStyle: 'long',
+      timeStyle: 'short',
+      timeZone: 'Europe/Brussels',
+    }).format(new Date(menuConfig.updatedAt))
+  : null;
+---
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>Gestion du site — La Table de la Dyle</title>
+  </head>
+  <body>
+    <main>
+      <h1>Gestion du site</h1>
+      <p class="intro">
+        Après chaque enregistrement, le site se met à jour tout seul en une à deux minutes.
+        Inutile de recommencer si le changement n'apparaît pas immédiatement.
+      </p>
+
+      <!-- ---------------------------------------------------------- MENU -->
+      <section>
+        <h2>Le menu</h2>
+        {menuMisAJour && <p class="note">Menu actuel mis en ligne le {menuMisAJour}.</p>}
+        <form method="POST" action="/api/gestion" enctype="multipart/form-data">
+          <input type="hidden" name="action" value="menu" />
+
+          <label for="fichier">Nouveau menu (PDF, 4 Mo maximum)</label>
+          <input type="file" id="fichier" name="fichier" accept="application/pdf" required />
+          <p class="erreur" id="erreur-taille" hidden></p>
+
+          <label for="mdp-menu">Mot de passe</label>
+          <input type="password" id="mdp-menu" name="mdp" required autocomplete="current-password" />
+
+          <button type="submit">Remplacer le menu</button>
+          <p class="note">L'envoi prend quelques secondes, ne fermez pas la page.</p>
+        </form>
+      </section>
+
+      <!-- ----------------------------------------------------- FERMETURE -->
+      <section>
+        <h2>Message de fermeture</h2>
+        <p class="note">
+          Bandeau affiché en haut de chaque page, par exemple pour les congés annuels.
+        </p>
+        <form method="POST" action="/api/gestion">
+          <input type="hidden" name="action" value="fermeture" />
+
+          <label class="ligne-case">
+            <input type="checkbox" name="actif" checked={closureConfig.active} />
+            Afficher le bandeau
+          </label>
+
+          <label for="message-fermeture">Texte du message</label>
+          <textarea id="message-fermeture" name="message" rows="3" maxlength="300"
+            >{closureConfig.message}</textarea>
+
+          <label for="mdp-fermeture">Mot de passe</label>
+          <input type="password" id="mdp-fermeture" name="mdp" required autocomplete="current-password" />
+
+          <button type="submit">Enregistrer le message</button>
+        </form>
+      </section>
+
+      <!-- ------------------------------------------------------ HORAIRES -->
+      <section>
+        <h2>Horaires d'ouverture</h2>
+        <p class="note">
+          Ces horaires s'affichent sur l'accueil, la réservation, le contact et le pied de page.
+        </p>
+        <form method="POST" action="/api/gestion">
+          <input type="hidden" name="action" value="horaires" />
+
+          <table>
+            <thead>
+              <tr><th>Jour</th><th>Fermé</th><th>Ouverture</th><th>Fermeture</th></tr>
+            </thead>
+            <tbody>
+              {jours.map(jour => (
+                <tr>
+                  <th scope="row">{jour.libelle}</th>
+                  <td>
+                    <input type="checkbox" name={`${jour.jour}_ferme`} checked={jour.ferme}
+                      aria-label={`${jour.libelle} : fermé`} />
+                  </td>
+                  <td>
+                    <input type="time" name={`${jour.jour}_ouverture`} value={jour.ouverture}
+                      aria-label={`${jour.libelle} : heure d'ouverture`} />
+                  </td>
+                  <td>
+                    <input type="time" name={`${jour.jour}_fermeture`} value={jour.fermeture}
+                      aria-label={`${jour.libelle} : heure de fermeture`} />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+
+          <label for="mdp-horaires">Mot de passe</label>
+          <input type="password" id="mdp-horaires" name="mdp" required autocomplete="current-password" />
+
+          <button type="submit">Enregistrer les horaires</button>
+        </form>
+      </section>
+    </main>
+
+    <script>
+      // Seul script de la page : prévenir avant l'envoi si le PDF dépasse la
+      // limite. Au-delà, l'hébergeur rejette la requête avant notre code et
+      // le gérant reçoit une page d'erreur incompréhensible.
+      const champ = document.getElementById('fichier');
+      const erreur = document.getElementById('erreur-taille');
+      const MAX = 4 * 1024 * 1024;
+
+      champ?.addEventListener('change', () => {
+        const fichier = champ.files?.[0];
+        if (fichier && fichier.size > MAX) {
+          const taille = (fichier.size / 1048576).toFixed(1);
+          erreur.innerHTML =
+            `Ce PDF fait ${taille} Mo, le maximum est de 4 Mo. ` +
+            'Compressez-le sur <a href="https://www.ilovepdf.com/fr/compresser_pdf" ' +
+            'target="_blank" rel="noopener">ilovepdf.com</a>, puis reprenez ici.';
+          erreur.hidden = false;
+          champ.value = '';
+        } else {
+          erreur.hidden = true;
+        }
+      });
+    </script>
+
+    <style>
+      :root { color-scheme: light; }
+      body {
+        font-family: system-ui, -apple-system, 'Segoe UI', Helvetica, Arial, sans-serif;
+        background: #F5F5F5; color: #1A1A1A; line-height: 1.6;
+        margin: 0; padding: 2rem 1rem;
+      }
+      main { max-width: 40rem; margin: 0 auto; }
+      h1 { font-size: 1.6rem; margin: 0 0 .5rem; }
+      h2 { font-size: 1.15rem; margin: 0 0 .75rem; }
+      .intro { margin: 0 0 2rem; }
+      section {
+        background: #fff; border: 1px solid #E8E8E8;
+        padding: 1.5rem; margin-bottom: 1.5rem;
+      }
+      label { display: block; margin: 1rem 0 .25rem; font-weight: 600; }
+      .ligne-case { display: flex; align-items: center; gap: .5rem; font-weight: 600; }
+      .ligne-case input { margin: 0; }
+      input[type="file"], input[type="password"], textarea {
+        width: 100%; padding: .6rem; border: 1px solid #1A1A1A;
+        background: #fff; font: inherit; box-sizing: border-box;
+      }
+      input[type="time"] { padding: .4rem; border: 1px solid #1A1A1A; font: inherit; }
+      table { width: 100%; border-collapse: collapse; margin-top: .5rem; }
+      th, td { text-align: left; padding: .4rem .3rem; border-bottom: 1px solid #E8E8E8; }
+      thead th { font-size: .8rem; text-transform: uppercase; letter-spacing: .08em; }
+      button {
+        margin-top: 1.25rem; padding: .8rem 1.5rem; border: 1px solid #1A1A1A;
+        background: #1A1A1A; color: #fff; font: inherit; cursor: pointer;
+      }
+      button:hover, button:focus-visible { background: #fff; color: #1A1A1A; }
+      .note { font-size: .9rem; color: #6B6B6B; margin: .5rem 0 0; }
+      .erreur { color: #B00020; font-size: .9rem; margin: .5rem 0 0; }
+      @media (max-width: 480px) {
+        th, td { padding: .3rem .15rem; font-size: .9rem; }
+        input[type="time"] { padding: .3rem; }
+      }
+    </style>
+  </body>
+</html>
