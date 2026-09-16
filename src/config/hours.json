@@ -1,0 +1,11 @@
+{
+  "days": [
+    { "jour": "lundi",    "services": [] },
+    { "jour": "mardi",    "services": [["18:00", "22:00"]] },
+    { "jour": "mercredi", "services": [["11:00", "22:00"]] },
+    { "jour": "jeudi",    "services": [["11:00", "22:00"]] },
+    { "jour": "vendredi", "services": [["11:00", "22:00"]] },
+    { "jour": "samedi",   "services": [["11:00", "22:00"]] },
+    { "jour": "dimanche", "services": [["11:00", "22:00"]] }
+  ]
+}

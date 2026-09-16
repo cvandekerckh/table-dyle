@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import reservationConfig from '../config/reservation.json';
 import closureConfig from '../config/closure.json';
+import { longRows } from '../lib/hours.js';
 const reservationsOpen = reservationConfig.open;
 ---
 
@@ -171,34 +172,12 @@ const reservationsOpen = reservationConfig.open;
             </tr>
           </thead>
           <tbody>
-            <tr class="closed">
-              <td>Lundi</td>
-              <td>Fermé</td>
-            </tr>
-            <tr>
-              <td>Mardi</td>
-              <td>18h00 – 22h00</td>
-            </tr>
-            <tr>
-              <td>Mercredi</td>
-              <td>11h00 – 22h00</td>
-            </tr>
-            <tr>
-              <td>Jeudi</td>
-              <td>11h00 – 22h00</td>
-            </tr>
-            <tr>
-              <td>Vendredi</td>
-              <td>11h00 – 22h00</td>
-            </tr>
-            <tr>
-              <td>Samedi</td>
-              <td>11h00 – 22h00</td>
-            </tr>
-            <tr>
-              <td>Dimanche</td>
-              <td>11h00 – 22h00</td>
-            </tr>
+            {longRows().map(ligne => (
+              <tr class={ligne.ferme ? 'closed' : undefined}>
+                <td>{ligne.jour}</td>
+                <td>{ligne.valeur}</td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

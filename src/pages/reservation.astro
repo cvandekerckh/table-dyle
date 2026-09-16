@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import reservationConfig from '../config/reservation.json';
 import closureConfig from '../config/closure.json';
+import { longRows } from '../lib/hours.js';
 const reservationsOpen = reservationConfig.open;
 ---
 
@@ -83,34 +84,12 @@ const reservationsOpen = reservationConfig.open;
         <div class="info-card">
           <h3>Nos horaires</h3>
           <dl class="hours-list">
-            <div>
-              <dt>Lundi</dt>
-              <dd>Fermé</dd>
-            </div>
-            <div>
-              <dt>Mardi</dt>
-              <dd>18h00 – 22h00</dd>
-            </div>
-            <div>
-              <dt>Mercredi</dt>
-              <dd>11h00 – 22h00</dd>
-            </div>
-            <div>
-              <dt>Jeudi</dt>
-              <dd>11h00 – 22h00</dd>
-            </div>
-            <div>
-              <dt>Vendredi</dt>
-              <dd>11h00 – 22h00</dd>
-            </div>
-            <div>
-              <dt>Samedi</dt>
-              <dd>11h00 – 22h00</dd>
-            </div>
-            <div>
-              <dt>Dimanche</dt>
-              <dd>11h00 – 22h00</dd>
-            </div>
+            {longRows().map(ligne => (
+              <div>
+                <dt>{ligne.jour}</dt>
+                <dd>{ligne.valeur}</dd>
+              </div>
+            ))}
           </dl>
           {closureConfig.active && (
             <p class="closure-note">{closureConfig.message}</p>

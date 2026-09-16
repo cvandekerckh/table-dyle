@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import closureConfig from '../config/closure.json';
+import { summaryLines } from '../lib/hours.js';
 ---
 
 <Layout
@@ -45,9 +46,9 @@ import closureConfig from '../config/closure.json';
             <p class="contact-block__label">Horaires</p>
             <div>
               <p>
-                Lundi : Fermé<br />
-                Mardi : 18h–22h<br />
-                Mer – Dim : 11h–22h
+                {summaryLines().map((ligne, i) => (
+                  <>{i > 0 && <br />}{ligne}</>
+                ))}
               </p>
               {closureConfig.active && (
                 <p class="contact-block__closure">{closureConfig.message}</p>

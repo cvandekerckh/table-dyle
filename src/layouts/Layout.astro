@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import reservationConfig from '../config/reservation.json';
 import closureConfig from '../config/closure.json';
+import { summaryLines } from '../lib/hours.js';
 const reservationsOpen = reservationConfig.open;
 
 interface Props {
@@ -92,9 +93,9 @@ const navLinks = [
         <div>
           <p class="site-footer__heading">Horaires</p>
           <p>
-            Lundi : Fermé<br />
-            Mardi : 18h–22h<br />
-            Mer – Dim : 11h–22h
+            {summaryLines().map((ligne, i) => (
+              <>{i > 0 && <br />}{ligne}</>
+            ))}
           </p>
           {closureConfig.active && (
             <p class="site-footer__closure">{closureConfig.message}</p>
