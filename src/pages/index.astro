@@ -7,7 +7,7 @@ const reservationsOpen = reservationConfig.open;
 
 <Layout
   title="La Table de la Dyle — Brasserie Belge · Wavre · Terrasse"
-  description="Bienvenue à La Table de la Dyle, brasserie belge à Wavre. Cuisine de produits frais, ambiance conviviale et magnifique terrasse. Réservez votre table en ligne."
+  description="La Table de la Dyle, brasserie belge à Wavre : produits frais, terrasse et salle de jeux pour enfants. Réservez votre table en ligne."
 >
 
   <!-- ========================================================
@@ -131,6 +131,26 @@ const reservationsOpen = reservationConfig.open;
       <img src="/images/salle-jour.jpg"    alt="La salle baignée de lumière en journée"                            loading="lazy" class="photo-grid-img" />
       <img src="/images/dressage-vin.jpg"  alt="Table dressée et sélection de vins"                                loading="lazy" class="photo-grid-img" />
       <img src="/images/facade.jpg"        alt="La façade de la brasserie au 27 rue Charles Sambon à Wavre"        loading="lazy" class="photo-grid-img" />
+    </div>
+  </section>
+
+  <!-- ========================================================
+       SALLE DE JEUX
+       ======================================================== -->
+  <section class="section" aria-label="Salle de jeux">
+    <div class="container text-center">
+      <p class="section__label">Pour les familles</p>
+      <h2 class="section__heading">Une salle de jeux pour les enfants</h2>
+      <p class="section__intro">
+        Pendant que vous prenez le temps de savourer, les enfants ont leur espace : poufs,
+        table à leur taille et coffre à jouets. Accessible librement pendant le service,
+        sous la responsabilité des parents.
+      </p>
+      <div class="jeux-grid">
+        <img src="/images/salle-de-jeu-1.jpeg" alt="La salle de jeux de La Table de la Dyle, avec ses poufs et son tapis"       loading="lazy" class="jeux-img" />
+        <img src="/images/salle-de-jeu-2.jpeg" alt="L'espace de jeux : banquette, table de pique-nique et pouf"                     loading="lazy" class="jeux-img" />
+        <img src="/images/salle-de-jeu-3.jpeg" alt="Le coffre à jouets de la salle de jeux"                                         loading="lazy" class="jeux-img" />
+      </div>
     </div>
   </section>
 
@@ -462,6 +482,35 @@ const reservationsOpen = reservationConfig.open;
   @media (max-width: 640px) {
     .photo-grid {
       grid-template-columns: repeat(2, 1fr);
+    }
+  }
+
+  /* ---- Salle de jeux ---- */
+  .jeux-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-xs);
+  }
+
+  .jeux-img {
+    width: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+    display: block;
+  }
+
+  /* Sur mobile : deux photos côte à côte, la troisième en pleine largeur
+     (cadrage paysage) pour éviter une colonne de portraits interminable. */
+  @media (max-width: 640px) {
+    .jeux-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .jeux-img:last-child {
+      grid-column: 1 / -1;
+      aspect-ratio: 4 / 3;
+      /* Cadrage bas : garde les jouets visibles plutôt que le couvercle. */
+      object-position: center 72%;
     }
   }
 

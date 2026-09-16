@@ -6,3 +6,6 @@ public/.DS_Store
 src/.DS_Store
 *.local
 .vercel
+
+# Captures de travail (workflow screenshots)
+temporary screenshots/
