@@ -196,22 +196,6 @@ export async function POST(request) {
 
   if (!env('ADMIN_PASSWORD') || !env('GITHUB_TOKEN')) {
     console.error('Variables d’environnement manquantes : ADMIN_PASSWORD et/ou GITHUB_TOKEN');
-    // DIAGNOSTIC TEMPORAIRE : noms de variables uniquement, jamais de valeur.
-    // Ces deux noms sont déjà publics (README), l'exposition est donc nulle.
-    return new Response(
-      JSON.stringify({
-        admin_password_vu: Boolean(env('ADMIN_PASSWORD')),
-        github_token_vu: Boolean(env('GITHUB_TOKEN')),
-        noms_correspondants: Object.keys(process.env)
-          .filter((k) => /ADMIN|GITHUB|RESEND|NOTIFY/i.test(k))
-          .sort(),
-        nombre_total_variables: Object.keys(process.env).length,
-        env_vercel: env('VERCEL_ENV'),
-        commit_deploye: (env('VERCEL_GIT_COMMIT_SHA') ?? '').slice(0, 7),
-        url_deploiement: env('VERCEL_URL'),
-      }, null, 2),
-      { status: 503, headers: { 'Content-Type': 'application/json' } },
-    );
     return erreurPage(
       'Configuration incomplète',
       "L'espace de gestion n'est pas encore configuré. Contactez l'administrateur du site.",
